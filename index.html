@@ -1,0 +1,2430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDC-VIT | Entrepreneurship Development Cell</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#050505',
+                        charcoal: '#0a0a0a',
+                        gold: {
+                            100: '#F9F1D0',
+                            200: '#F0E68C',
+                            300: '#D4AF37', /* Metallic Gold */
+                            400: '#C5A059', /* Antique */
+                            500: '#B8860B', /* Dark Goldenrod */
+                            600: '#AA6C39', /* Bronze/Gold */
+                            700: '#8B6508',
+                        }
+                    },
+                    fontFamily: {
+                        header: ['"Cinzel Decorative"', 'serif'],
+                        body: ['"Cormorant Garamond"', 'serif'],
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c)',
+                        'gold-text': 'linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%)',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 60s linear infinite',
+                        'spin-reverse-slow': 'spin 45s linear infinite reverse',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'drift': 'drift 20s infinite alternate ease-in-out',
+                        'marquee-up': 'marquee-up 60s linear infinite',
+                        'marquee-down': 'marquee-down 60s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        drift: {
+                            '0%': { transform: 'translate(0, 0) scale(1)' },
+                            '100%': { transform: 'translate(30px, -30px) scale(1.1)' },
+                        },
+                        'marquee-up': {
+                            '0%': { transform: 'translateY(0)' },
+                            '100%': { transform: 'translateY(-50%)' },
+                        },
+                        'marquee-down': {
+                            '0%': { transform: 'translateY(-50%)' },
+                            '100%': { transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b38728; 
+            border-radius: 4px;
+        }
+
+        .text-gold-metallic {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .symbol-card {
+            transition: background-color 0.5s ease; 
+            backdrop-filter: blur(12px); 
+            position: absolute; 
+            z-index: 10;
+            width: 300px;
+            height: 300px;
+            left: 50%;
+            top: 50%;
+            margin-left: -150px; 
+            margin-top: -150px; 
+            transform-style: preserve-3d;
+            will-change: transform, opacity, box-shadow, border-color;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(10, 10, 10, 0.3);
+            box-shadow: 
+                inset 0 0 20px rgba(255, 255, 255, 0.03),
+                0 4px 10px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            backface-visibility: visible; 
+        }
+        
+        .symbol-card:hover {
+            background-color: rgba(20, 20, 20, 0.5);
+        }
+
+        .symbol-path {
+            fill: none;
+            stroke: #555; 
+            stroke-width: 1;
+            transition: all 0.5s ease;
+        }
+
+        .symbol-card:hover .symbol-path {
+            stroke: #D4AF37;
+            filter: drop-shadow(0 0 2px #D4AF37);
+        }
+
+        /* QUOTE STYLES */
+        .quote-container {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 250px; 
+            opacity: 0; 
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+            pointer-events: none;
+        }
+
+        .quote-left {
+            right: 130%; 
+            text-align: right;
+            border-right: 1px solid rgba(212, 175, 55, 0.5);
+            padding-right: 1.5rem;
+        }
+
+        .quote-right {
+            left: 130%; 
+            text-align: left;
+            border-left: 1px solid rgba(212, 175, 55, 0.5);
+            padding-left: 1.5rem;
+        }
+
+        .quote-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #D4AF37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            line-height: 1.2;
+        }
+
+        .quote-sub {
+            display: block;
+            margin-top: 0.5rem;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+        }
+
+        /* ORB STYLES for Replace Images */
+        .alchemy-orb {
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            border: 2px solid rgba(192, 192, 192, 0.6); 
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .alchemy-orb::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #A0A0A0, #FFFFFF, #606060) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        /* Specific Materials */
+        .orb-lapis {
+            background: url('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=300&auto=format&fit=crop') no-repeat center center/cover;
+            border-radius: 45% 55% 40% 60% / 50% 60% 40% 50%;
+            animation: morph 8s ease-in-out infinite alternate;
+        }
+        .orb-mercury {
+            background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&auto=format&fit=crop') no-repeat center center/cover;
+            border-radius: 50%;
+            box-shadow: inset 0 0 30px rgba(255,255,255,0.2);
+        }
+        .orb-sulphur {
+            background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop') no-repeat center center/cover;
+            border-radius: 60% 40% 60% 40% / 50% 50% 50% 50%;
+            animation: morph 6s ease-in-out infinite alternate-reverse;
+        }
+        .orb-salt {
+            background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop') no-repeat center center/cover;
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 45% 55% 40% 60% / 50% 60% 40% 50%; }
+            100% { border-radius: 55% 45% 60% 40% / 60% 50% 50% 60%; }
+        }
+
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Separator Animation */
+        .separator-pulse {
+            animation: separatorPulse 4s infinite ease-in-out;
+        }
+        @keyframes separatorPulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.95); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* REFINED SMOKE EFFECTS */
+        .smoke-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .smoke-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px); 
+            opacity: 0.4;
+            animation: drift 25s infinite alternate ease-in-out;
+        }
+
+        /* Scroll Reassembly Styles */
+        .geometry-path {
+            transform-box: fill-box;
+            transform-origin: center;
+            transition: transform 0.1s linear, opacity 0.1s linear;
+        }
+
+        .sacred-char {
+            position: absolute;
+            font-family: 'Cinzel Decorative', serif;
+            font-weight: 700;
+            color: #D4AF37; 
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            will-change: transform, opacity;
+            user-select: none;
+        }
+        
+        /* 3D Helix Styles */
+        .scene-3d {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+        .helix-group {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* Navbar Toggle & Chain */
+        #nav-toggle {
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        #nav-toggle.rotate-180-active {
+            transform: rotate(180deg);
+        }
+
+        .chain-node {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.8);
+            transition: opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .nav-visible .chain-node {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        /* UPDATED DELAYS FOR 6 NODES */
+        .nav-visible .chain-node:nth-of-type(1) { transition-delay: 0.1s; }
+        .nav-visible .chain-node:nth-of-type(2) { transition-delay: 0.2s; }
+        .nav-visible .chain-node:nth-of-type(3) { transition-delay: 0.3s; }
+        .nav-visible .chain-node:nth-of-type(4) { transition-delay: 0.4s; }
+        .nav-visible .chain-node:nth-of-type(5) { transition-delay: 0.5s; }
+        .nav-visible .chain-node:nth-of-type(6) { transition-delay: 0.6s; }
+
+        .chain-line {
+            height: 0;
+            transition: height 0.3s ease-out;
+        }
+        .nav-visible .chain-line {
+            height: 1.5rem; 
+            transition-delay: 0.15s; 
+        }
+        /* UPDATED LINE DELAYS */
+        .nav-visible .chain-line:nth-of-type(1) { transition-delay: 0.15s; }
+        .nav-visible .chain-line:nth-of-type(2) { transition-delay: 0.25s; }
+        .nav-visible .chain-line:nth-of-type(3) { transition-delay: 0.35s; }
+        .nav-visible .chain-line:nth-of-type(4) { transition-delay: 0.45s; }
+        .nav-visible .chain-line:nth-of-type(5) { transition-delay: 0.55s; }
+
+        /* Gallery Styles */
+        .gallery-item {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: #0a0a0a;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            aspect-ratio: 16/9; /* Changed to landscape */
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.1);
+            z-index: 10;
+        }
+
+        .gallery-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(80%) contrast(1.1) brightness(0.8);
+            transition: all 0.7s ease;
+            opacity: 0.9;
+        }
+
+        .gallery-item:hover .gallery-media {
+            filter: grayscale(0%) contrast(1) brightness(1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Play Button Icon for Videos */
+        .video-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            opacity: 0.7;
+            pointer-events: none; /* Ensure clicks pass through */
+        }
+        
+        /* Scroll Reveal Animation Class */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* PORTAL WIPE STYLES */
+        #geo-portal {
+            position: absolute;
+            inset: 0; 
+            width: 100%;
+            height: 100%;
+            /* Solid background that covers the geometry */
+            /* UPDATED: Golden gradient instead of black */
+            background: radial-gradient(circle at center, #F0E68C 0%, #D4AF37 50%, #8B6508 100%);
+            /* Start closed */
+            clip-path: circle(0% at 50% 50%); 
+            z-index: 30; 
+            pointer-events: none;
+        }
+
+        /* CINEMATIC VIDEO CONTAINER */
+        #cinematic-container {
+            position: absolute;
+            /* Padded from screen edges */
+            top: 120px; /* Below Navbar */
+            left: 2rem;
+            right: 2rem;
+            bottom: 2rem;
+            z-index: 40;
+            opacity: 0;
+            pointer-events: none; 
+            /* Aesthetic Golden Border */
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            background: #000;
+            overflow: hidden; 
+        }
+
+        /* Inner ornamental border */
+        #cinematic-container::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.8);
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        /* Corner Accents */
+        .corner-accent {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: #D4AF37;
+            border-style: solid;
+            transition: all 0.5s ease;
+            z-index: 30;
+        }
+        .tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        .tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+        .bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+        .br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+        #main-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1.0; 
+            transition: opacity 1s ease;
+            z-index: 10;
+        }
+        
+        /* New Outside Title Style */
+        #cinematic-title-outside {
+            position: absolute;
+            top: 90px; /* Positioned between navbar and video box */
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 45;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* RANDOM GOLD GLOW ANIMATION FOR SVG LINES */
+        .glow-active {
+            animation: gold-pulse 2s ease-in-out forwards;
+        }
+
+        @keyframes gold-pulse {
+            0% { stroke: currentColor; filter: drop-shadow(0 0 0 transparent); stroke-width: inherit; }
+            50% { stroke: #fff; filter: drop-shadow(0 0 8px rgba(255, 215, 0, 1)); stroke-width: 3px; }
+            100% { stroke: currentColor; filter: drop-shadow(0 0 0 transparent); stroke-width: inherit; }
+        }
+
+        /* NEW STYLES FOR SPONSORS CAROUSEL */
+        .sponsors-carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+        
+        .sponsors-carousel {
+            display: flex;
+            gap: 2rem;
+            animation: scrollLeft 40s linear infinite;
+            will-change: transform;
+        }
+        
+        .sponsors-carousel:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scrollLeft {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* Register Section Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+        
+        .sponsor-card {
+            flex-shrink: 0;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.6) 0%, rgba(20, 20, 20, 0.4) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sponsor-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .sponsor-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(212, 175, 55, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 
+                        0 0 30px rgba(212, 175, 55, 0.2),
+                        inset 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+        
+        .sponsor-card:hover::before {
+            opacity: 1;
+        }
+        
+        .sponsor-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: grayscale(40%) brightness(0.9);
+            transition: all 0.4s ease;
+        }
+        
+        .sponsor-card:hover img {
+            filter: grayscale(0%) brightness(1.1);
+        }
+        
+        .view-all-btn {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(184, 134, 11, 0.1) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .view-all-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(184, 134, 11, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .view-all-btn:hover {
+            border-color: rgba(212, 175, 55, 0.8);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2),
+                        inset 0 0 20px rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .view-all-btn:hover::before {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body class="font-body selection:bg-gold-500 selection:text-black">
+
+    <!-- Atmospheric Smoke Background (Refined) -->
+    <div class="smoke-container">
+        <div class="absolute top-0 left-0 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-0 w-[800px] h-[800px] bg-purple-900/10 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3 animate-pulse-slow"></div>
+        <div class="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-gold-900/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
+    </div>
+
+    <!-- 1. UPDATED TITLE (Top Left) -->
+    <div class="fixed top-6 left-6 md:left-10 z-50 flex items-center gap-3 mix-blend-difference pointer-events-none">
+        <i data-lucide="sparkles" class="text-gold-300 w-5 h-5 animate-pulse-slow"></i>
+        <span class="font-header text-lg md:text-xl tracking-[0.2em] text-gold-metallic font-bold uppercase">EDC-VIT</span>
+    </div>
+
+    <!-- 2. TOGGLE BUTTON (Top Right) -->
+    <button id="nav-toggle" class="fixed top-6 right-6 md:right-10 z-[60] group focus:outline-none" aria-label="Toggle Menu">
+        <div class="relative w-12 h-12 flex items-center justify-center">
+            <div class="absolute inset-0 border-2 border-gold-400 bg-charcoal/90 backdrop-blur-md rotate-45 rounded-lg shadow-[0_0_15px_rgba(212,175,55,0.4)] group-hover:border-gold-300 group-hover:shadow-[0_0_25px_rgba(212,175,55,0.7)] transition-all duration-300"></div>
+            <div class="absolute inset-1.5 border border-gold-500/30 rotate-45 rounded-md"></div>
+            <div class="relative z-10 -rotate-45 transition-transform duration-500">
+                <i data-lucide="flask-conical" class="text-gold-300 w-5 h-5 fill-gold-500/10"></i>
+            </div>
+        </div>
+    </button>
+
+    <!-- 3. VERTICAL CHAIN NAVBAR -->
+    <nav id="main-nav" class="fixed top-[4.5rem] right-6 md:right-10 z-50 flex flex-col items-center w-12 origin-top">
+        <div class="chain-line w-px bg-gradient-to-b from-gold-400 to-gold-500/50 h-0"></div>
+        <!-- Node 1 -->
+        <div class="chain-node relative group">
+            <a href="#opus" onclick="toggleNav()" class="block w-8 h-8 rotate-45 border border-gold-500/50 bg-charcoal/90 backdrop-blur hover:bg-gold-500/20 hover:border-gold-300 transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center rounded-md group-hover:scale-110">
+                <i data-lucide="sun" class="-rotate-45 w-3.5 h-3.5 text-amber-300 drop-shadow-[0_0_3px_rgba(251,191,36,0.8)] transition-all group-hover:drop-shadow-[0_0_6px_rgba(251,191,36,1)]"></i>
+            </a>
+            <div class="absolute right-12 top-1/2 -translate-y-1/2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap">
+                <span class="font-header text-[0.65rem] tracking-[0.25em] text-gold-200 bg-black/80 px-2 py-1 rounded-sm border border-gold-500/20 backdrop-blur-md">HOME</span>
+            </div>
+        </div>
+        <div class="chain-line w-px bg-gradient-to-b from-gold-500/50 to-gold-500/50 h-0"></div>
+        <!-- Node 2 -->
+        <div class="chain-node relative group">
+            <a href="#geometry" onclick="toggleNav()" class="block w-8 h-8 rotate-45 border border-gold-500/50 bg-charcoal/90 backdrop-blur hover:bg-gold-500/20 hover:border-gold-300 transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center rounded-md group-hover:scale-110">
+                <i data-lucide="triangle" class="-rotate-45 w-3.5 h-3.5 text-emerald-400 drop-shadow-[0_0_3px_rgba(52,211,153,0.8)] fill-emerald-400/20 transition-all group-hover:drop-shadow-[0_0_6px_rgba(52,211,153,1)]"></i>
+            </a>
+            <div class="absolute right-12 top-1/2 -translate-y-1/2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap">
+                <span class="font-header text-[0.65rem] tracking-[0.25em] text-gold-200 bg-black/80 px-2 py-1 rounded-sm border border-gold-500/20 backdrop-blur-md">ABOUT</span>
+            </div>
+        </div>
+        <div class="chain-line w-px bg-gradient-to-b from-gold-500/50 to-gold-500/50 h-0"></div>
+        <!-- Node 3 -->
+        <div class="chain-node relative group">
+            <a href="#symbols" onclick="toggleNav()" class="block w-8 h-8 rotate-45 border border-gold-500/50 bg-charcoal/90 backdrop-blur hover:bg-gold-500/20 hover:border-gold-300 transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center rounded-md group-hover:scale-110">
+                <i data-lucide="gem" class="-rotate-45 w-3.5 h-3.5 text-rose-500 drop-shadow-[0_0_3px_rgba(244,63,94,0.8)] transition-all group-hover:drop-shadow-[0_0_6px_rgba(244,63,94,1)]"></i>
+            </a>
+            <div class="absolute right-12 top-1/2 -translate-y-1/2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap">
+                <span class="font-header text-[0.65rem] tracking-[0.25em] text-gold-200 bg-black/80 px-2 py-1 rounded-sm border border-gold-500/20 backdrop-blur-md">SPEAKERS</span>
+            </div>
+        </div>
+        <div class="chain-line w-px bg-gradient-to-b from-gold-500/50 to-gold-500/50 h-0"></div>
+        <!-- Node 4 -->
+        <div class="chain-node relative group">
+            <a href="#archive" onclick="toggleNav()" class="block w-8 h-8 rotate-45 border border-gold-500/50 bg-charcoal/90 backdrop-blur hover:bg-gold-500/20 hover:border-gold-300 transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center rounded-md group-hover:scale-110">
+                <i data-lucide="flame" class="-rotate-45 w-3.5 h-3.5 text-purple-400 drop-shadow-[0_0_3px_rgba(192,132,252,0.8)] fill-purple-400/20 transition-all group-hover:drop-shadow-[0_0_6px_rgba(192,132,252,1)]"></i>
+            </a>
+            <div class="absolute right-12 top-1/2 -translate-y-1/2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap">
+                <span class="font-header text-[0.65rem] tracking-[0.25em] text-gold-200 bg-black/80 px-2 py-1 rounded-sm border border-gold-500/20 backdrop-blur-md">ARCHIVE</span>
+            </div>
+        </div>
+        <div class="chain-line w-px bg-gradient-to-b from-gold-500/50 to-gold-500/50 h-0"></div>
+        <!-- Node 5 (Partners) -->
+        <div class="chain-node relative group">
+            <a href="#sponsors" onclick="toggleNav()" class="block w-8 h-8 rotate-45 border border-gold-500/50 bg-charcoal/90 backdrop-blur hover:bg-gold-500/20 hover:border-gold-300 transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center rounded-md group-hover:scale-110">
+                <i data-lucide="handshake" class="-rotate-45 w-3.5 h-3.5 text-cyan-400 drop-shadow-[0_0_3px_rgba(34,211,238,0.8)] fill-cyan-400/20 transition-all group-hover:drop-shadow-[0_0_6px_rgba(34,211,238,1)]"></i>
+            </a>
+            <div class="absolute right-12 top-1/2 -translate-y-1/2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap">
+                <span class="font-header text-[0.65rem] tracking-[0.25em] text-gold-200 bg-black/80 px-2 py-1 rounded-sm border border-gold-500/20 backdrop-blur-md">PARTNERS</span>
+            </div>
+        </div>
+        <div class="chain-line w-px bg-gradient-to-b from-gold-500/50 to-transparent h-0"></div>
+        <!-- Action Node -->
+        <div class="chain-node relative group mt-1">
+            <button onclick="toggleNav()" class="w-10 h-10 rounded-full border border-gold-400 bg-gold-900/80 text-gold-300 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:bg-gold-500 hover:text-black transition-all duration-300">
+                <i data-lucide="atom" class="w-4 h-4 animate-spin-slow"></i>
+            </button>
+             <div class="absolute right-14 top-1/2 -translate-y-1/2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap">
+                <span class="font-header text-[0.65rem] tracking-[0.25em] text-gold-300 font-bold uppercase">INITIATE</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-x-visible z-10" id="opus">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold-600/5 rounded-full blur-[100px] animate-pulse-slow"></div>
+        
+        <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+            <svg class="w-[800px] h-[800px] animate-spin-slow text-gold-400" viewBox="0 0 500 500">
+                <defs>
+                    <path id="textCircle" d="M 250, 250 m -200, 0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0"/>
+                </defs>
+                <circle cx="250" cy="250" r="240" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="250" cy="250" r="220" fill="none" stroke="currentColor" stroke-width="1"/>
+                <polygon points="250,50 423,350 77,350" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <polygon points="250,450 423,150 77,150" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="250" cy="50" r="10" fill="currentColor" />
+                <circle cx="423" cy="350" r="10" fill="currentColor" />
+                <circle cx="77" cy="350" r="10" fill="currentColor" />
+            </svg>
+            <svg class="absolute w-[500px] h-[500px] animate-spin-reverse-slow text-gold-200" viewBox="0 0 500 500">
+                <circle cx="250" cy="250" r="150" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect x="175" y="175" width="150" height="150" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(45 250 250)"/>
+                <circle cx="250" cy="250" r="50" fill="none" stroke="currentColor" stroke-width="1"/>
+            </svg>
+        </div>
+
+        <div id="hero-content" class="relative z-10 text-center w-full max-w-full px-6 md:px-12 lg:px-20 transition-transform duration-75 ease-out">
+            <!-- UPDATED SUBTITLE -->
+            <p class="font-header text-gold-500 tracking-[0.5em] text-sm mb-4 animate-float uppercase">EDC - VIT PRESENTS</p>
+            <h1 class="font-header text-5xl sm:text-6xl md:text-9xl text-gold-metallic font-black mb-6 tracking-tighter drop-shadow-2xl leading-none">
+                VISHWAPRENEUR
+            </h1>
+            <p class="font-body text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto italic font-light leading-relaxed mb-10">
+                “In the crucible of entrepreneurship, ideas are tested, risks are refined, and vision is transmuted into value.”
+            </p>
+            
+            <!-- NEW: Explore & Register Buttons -->
+            <div class="mb-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#geometry" class="group relative inline-flex items-center gap-3 px-8 py-3 overflow-hidden rounded-sm bg-void border border-gold-500/50 transition-all duration-300 hover:border-gold-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                    <!-- Hover Fill -->
+                    <div class="absolute inset-0 w-0 bg-gold-500/10 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                    
+                    <span class="relative font-header text-xs tracking-[0.3em] text-gold-300 group-hover:text-gold-200 uppercase">Explore Now</span>
+                    <i data-lucide="arrow-down" class="relative w-4 h-4 text-gold-300 transition-transform duration-300 group-hover:translate-y-1"></i>
+                </a>
+                
+                <a href="#register" class="group relative inline-flex items-center gap-3 px-8 py-3 overflow-hidden rounded-sm bg-gold-500/20 border border-gold-400 transition-all duration-300 hover:bg-gold-500/30 hover:border-gold-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)]">
+                    <!-- Shimmer Effect -->
+                    <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-gold-300/20 to-transparent group-hover:translate-x-full transition-transform duration-700"></div>
+                    
+                    <span class="relative font-header text-xs tracking-[0.3em] text-gold-200 group-hover:text-gold-100 uppercase font-semibold">Register Now</span>
+                    <i data-lucide="ticket" class="relative w-4 h-4 text-gold-300 transition-transform duration-300 group-hover:scale-110"></i>
+                </a>
+            </div>
+
+            <div class="flex justify-center gap-6">
+                <div class="h-16 w-[1px] bg-gradient-to-b from-gold-300 to-transparent"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sacred Geometry Scroll Reassembly -->
+    <section id="geometry" class="relative h-[500vh] bg-void z-20">
+        <div class="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
+            
+            <div id="geo-title" class="absolute top-10 text-center z-10 mix-blend-difference pointer-events-none bg-void/30 backdrop-blur-[2px] p-4 rounded-xl transition-opacity duration-500">
+                <h2 class="font-header text-3xl md:text-5xl text-gold-300 mb-2 tracking-widest">ABOUT</h2>
+                <p class="font-body text-gold-100/60 text-sm tracking-[0.2em] uppercase">Dissolve and Coagulate</p>
+            </div>
+
+            <!-- 1. The Portal Wipe (Void Circle) -->
+            <div id="geo-portal"></div>
+
+            <!-- NEW: Cinematic Title (Outside Box) -->
+            <div id="cinematic-title-outside">
+                <h2 class="font-header text-xs md:text-sm text-gray-300 tracking-[0.4em] uppercase drop-shadow-lg">AFTER MOVIE 2025</h2>
+            </div>
+
+            <!-- 2. The Cinematic Video (Fades in on top) -->
+            <div id="cinematic-container">
+                <div class="corner-accent tl"></div>
+                <div class="corner-accent tr"></div>
+                <div class="corner-accent bl"></div>
+                <div class="corner-accent br"></div>
+                
+                <video id="main-video" autoplay loop muted playsinline crossorigin="anonymous">
+                    <!-- Reliable abstract fluid video -->
+                    <!-- UPDATED: Event/After Movie style video -->
+                    <source src="https://videos.pexels.com/video-files/2609279/2609279-hd_1920_1080_30fps.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <!-- Sacred Text Container -->
+            <div id="text-ring" class="absolute inset-0 pointer-events-none z-0 flex items-center justify-center transition-opacity duration-500">
+                <!-- Letters injected via JS -->
+            </div>
+
+            <div id="svg-container" class="w-full h-full flex items-center justify-center relative transition-opacity duration-500">
+                <svg id="reassembly-svg" class="w-[65vmin] h-[65vmin] overflow-visible" viewBox="0 0 600 600">
+                    <defs>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <g id="geo-outer" class="geometry-path text-gold-700/50">
+                         <circle cx="300" cy="300" r="280" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="10 10" />
+                         <circle cx="300" cy="300" r="260" fill="none" stroke="currentColor" stroke-width="4" />
+                         <path d="M300 20 L300 40 M300 560 L300 580 M20 300 L40 300 M560 300 L580 300" stroke="currentColor" stroke-width="2" />
+                    </g>
+
+                    <g id="geo-tri1" class="geometry-path text-gold-500" filter="url(#glow)">
+                        <polygon points="300,50 516.5,425 83.5,425" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="300" cy="50" r="5" fill="currentColor"/>
+                        <circle cx="516.5" cy="425" r="5" fill="currentColor"/>
+                        <circle cx="83.5" cy="425" r="5" fill="currentColor"/>
+                    </g>
+
+                    <g id="geo-tri2" class="geometry-path text-gold-400" filter="url(#glow)">
+                        <polygon points="300,550 516.5,175 83.5,175" fill="none" stroke="currentColor" stroke-width="2" />
+                        <line x1="300" y1="550" x2="300" y2="300" stroke="currentColor" stroke-width="1" />
+                        <line x1="516.5" y1="175" x2="300" y2="300" stroke="currentColor" stroke-width="1" />
+                        <line x1="83.5" y1="175" x2="300" y2="300" stroke="currentColor" stroke-width="1" />
+                    </g>
+
+                    <g id="geo-square" class="geometry-path text-gold-300">
+                        <rect x="200" y="200" width="200" height="200" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45 300 300)" />
+                    </g>
+
+                    <g id="geo-center" class="geometry-path text-gold-100">
+                        <circle cx="300" cy="300" r="50" fill="none" stroke="currentColor" stroke-width="3" />
+                        <circle cx="300" cy="300" r="10" fill="currentColor" />
+                        <path d="M300 250 L300 350 M250 300 L350 300" stroke="currentColor" stroke-width="1" />
+                    </g>
+                    
+                    <g id="geo-scatter" class="geometry-path text-gold-600">
+                        <path d="M100 100 L120 120 M120 100 L100 120" stroke="currentColor" stroke-width="2" transform="translate(0,0)" />
+                        <circle cx="500" cy="100" r="10" fill="none" stroke="currentColor" />
+                        <rect x="100" y="500" width="20" height="20" fill="none" stroke="currentColor" />
+                        <path d="M500 500 L510 480 L520 500 Z" fill="none" stroke="currentColor" />
+                    </g>
+                </svg>
+            </div>
+            
+            <div class="absolute bottom-10 animate-pulse text-gold-500/50 text-xs tracking-widest">
+                SCROLL TO REFORM
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM SEPARATOR 1 -->
+    <div class="w-full flex items-center justify-center gap-4 py-12 z-20 relative opacity-80 pointer-events-none">
+        <div class="h-px w-full max-w-[200px] md:max-w-xs bg-gradient-to-r from-transparent via-gold-500/50 to-gold-300"></div>
+        <div class="relative flex items-center justify-center separator-pulse">
+            <div class="absolute inset-0 bg-gold-500/10 blur-md rounded-full"></div>
+            <svg class="w-8 h-8 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2L22 12L12 22L2 12L12 2Z" />
+                <path d="M12 6L18 12L12 18L6 12L12 6Z" opacity="0.6"/>
+                <circle cx="12" cy="12" r="2" fill="currentColor" />
+            </svg>
+        </div>
+        <div class="h-px w-full max-w-[200px] md:max-w-xs bg-gradient-to-l from-transparent via-gold-500/50 to-gold-300"></div>
+    </div>
+
+    <!-- NEW SECTION: The Prima Materia (3D Spiral) -->
+    <section class="relative h-[1000vh] bg-charcoal z-10" id="symbols">
+        <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center scene-3d perspective-3d">
+            
+            <div class="absolute top-12 text-center z-20 pointer-events-none">
+                <h2 class="font-header text-5xl text-gold-200 mb-2 tracking-wide">Our Guest Speakers</h2>
+                <p class="text-gray-500 font-body text-xl tracking-widest uppercase opacity-60">The Ingredients of the Cosmos</p>
+            </div>
+
+            <!-- 3D Helix Group -->
+            <div id="helix-group" class="helix-group flex items-center justify-center">
+                <svg id="spiral-svg" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0; opacity: 0.3;"></svg>
+
+                <!-- Card 1: Lapis (Index 0) -->
+                <div class="symbol-card spiral-item group">
+                    <div class="quote-container quote-left">
+                        <p class="quote-text">"The Stone that is not a stone, a precious thing that has no value."</p>
+                        <span class="quote-sub">Rosarium Philosophorum</span>
+                    </div>
+
+                    <div class="h-32 w-32 mb-4 relative flex items-center justify-center">
+                        <div class="alchemy-orb orb-lapis"></div>
+                    </div>
+                    <h3 class="font-header text-gold-300 text-lg mb-1 tracking-widest">Lapis</h3>
+                    <p class="text-gray-400 text-xs text-center px-8 leading-relaxed">Immortality & Perfection</p>
+                </div>
+
+                <!-- Card 2: Mercury (Index 1) -->
+                <div class="symbol-card spiral-item group">
+                    <div class="quote-container quote-right">
+                        <p class="quote-text">"It is the father of all metals, the fluid spirit of life."</p>
+                        <span class="quote-sub">The Emerald Tablet</span>
+                    </div>
+
+                    <div class="h-32 w-32 mb-4 flex items-center justify-center">
+                         <div class="alchemy-orb orb-mercury"></div>
+                    </div>
+                    <h3 class="font-header text-gold-300 text-lg mb-1 tracking-widest">Mercury</h3>
+                    <p class="text-gray-400 text-xs text-center px-8 leading-relaxed">Fluid Spirit & Mind</p>
+                </div>
+
+                <!-- Card 3: Sulphur (Index 2) -->
+                <div class="symbol-card spiral-item group">
+                    <div class="quote-container quote-left">
+                        <p class="quote-text">"The internal fire that activates and coagulates the spirit."</p>
+                        <span class="quote-sub">Paracelsus</span>
+                    </div>
+
+                    <div class="h-32 w-32 mb-4 flex items-center justify-center">
+                        <div class="alchemy-orb orb-sulphur"></div>
+                    </div>
+                    <h3 class="font-header text-gold-300 text-lg mb-1 tracking-widest">Sulphur</h3>
+                    <p class="text-gray-400 text-xs text-center px-8 leading-relaxed">Active Soul & Fire</p>
+                </div>
+
+                <!-- Card 4: Salt (Index 3) -->
+                <div class="symbol-card spiral-item group">
+                    <div class="quote-container quote-right">
+                        <p class="quote-text">"The key to the lock, the beginning and the end of the work."</p>
+                        <span class="quote-sub">Hermetic Corpus</span>
+                    </div>
+
+                    <div class="h-32 w-32 mb-4 flex items-center justify-center">
+                        <div class="alchemy-orb orb-salt"></div>
+                    </div>
+                    <h3 class="font-header text-gold-300 text-lg mb-1 tracking-widest">Salt</h3>
+                    <p class="text-gray-400 text-xs text-center px-8 leading-relaxed">Body & Matter</p>
+                </div>
+            </div>
+            
+             <div class="absolute bottom-10 animate-pulse text-gold-500/50 text-xs tracking-widest z-20">
+                SCROLL TO ASCEND
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM SEPARATOR 2 -->
+    <div class="w-full flex items-center justify-center gap-4 py-12 z-20 relative opacity-80 pointer-events-none bg-void/50 backdrop-blur-sm -mt-24 mb-12">
+        <div class="h-px w-full max-w-[200px] md:max-w-xs bg-gradient-to-r from-transparent via-gold-500/50 to-gold-300"></div>
+        <div class="relative flex items-center justify-center separator-pulse">
+            <div class="absolute inset-0 bg-gold-500/10 blur-md rounded-full"></div>
+            <svg class="w-8 h-8 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2L22 12L12 22L2 12L12 2Z" />
+                <path d="M12 6L18 12L12 18L6 12L12 6Z" opacity="0.6"/>
+                <circle cx="12" cy="12" r="2" fill="currentColor" />
+            </svg>
+        </div>
+        <div class="h-px w-full max-w-[200px] md:max-w-xs bg-gradient-to-l from-transparent via-gold-500/50 to-gold-300"></div>
+    </div>
+
+    <!-- NEW SECTION: THE HERMETIC ARCHIVE (2-Column Scrolling Gallery) -->
+    <section class="relative h-screen w-full bg-void z-20 flex flex-col overflow-hidden" id="archive">
+        
+        <!-- Static Header -->
+        <div class="relative z-10 w-full text-center py-8 bg-void/90 backdrop-blur-sm shrink-0">
+            <h2 class="font-header text-3xl md:text-5xl text-gold-200 mb-2 tracking-widest">THE ARCHIVE</h2>
+            <p class="text-gold-100/50 text-xs md:text-sm tracking-[0.3em] uppercase">Visual Records of the Great Work</p>
+        </div>
+
+        <!-- Scroll Container with Gradients -->
+        <div class="flex-1 w-full max-w-6xl mx-auto flex gap-4 md:gap-10 px-4 overflow-hidden relative">
+            <!-- Fade Overlay Top -->
+            <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-void to-transparent z-10 pointer-events-none"></div>
+            <!-- Fade Overlay Bottom -->
+            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-void to-transparent z-10 pointer-events-none"></div>
+
+            <!-- Col 1: Scroll Up -->
+            <div class="w-1/2 relative h-full">
+                <div class="flex flex-col gap-6 md:gap-10 animate-marquee-up">
+                    <!-- Set A -->
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/3163534/3163534-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Nigredo</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Macrocosm</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/6561173/6561173-sd_360_640_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Sublimation</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Aurum Potabile</h3></div></div>
+                    <!-- Extra Items for Spacing -->
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Eclipse</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1532798442725-41036acc7489?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/853800/853800-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Flux</h3></div></div>
+                    
+                    <!-- Set B (Duplicate for Loop) -->
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/3163534/3163534-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Nigredo</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Macrocosm</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/6561173/6561173-sd_360_640_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Sublimation</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Aurum Potabile</h3></div></div>
+                    <!-- Extra Items Duplicate -->
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Eclipse</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1532798442725-41036acc7489?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/853800/853800-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Flux</h3></div></div>
+                </div>
+            </div>
+
+            <!-- Col 2: Scroll Down -->
+            <div class="w-1/2 relative h-full">
+                <div class="flex flex-col gap-6 md:gap-10 animate-marquee-down">
+                    <!-- Set A -->
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Liber Mutus</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2022395/2022395-sd_640_360_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Ignis Ardens</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1601379327896-d25032df7377?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Geometry</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1515405295579-ba7b45498955?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/7565436/7565436-sd_540_960_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">The Great Work</h3></div></div>
+                    <!-- Extra Items for Spacing -->
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Prisma</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2802069/2802069-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Ether</h3></div></div>
+
+                    <!-- Set B (Duplicate for Loop) -->
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Liber Mutus</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2022395/2022395-sd_640_360_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Ignis Ardens</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1601379327896-d25032df7377?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Geometry</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1515405295579-ba7b45498955?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/7565436/7565436-sd_540_960_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">The Great Work</h3></div></div>
+                    <!-- Extra Items Duplicate -->
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Prisma</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2802069/2802069-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Ether</h3></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- View More Button Footer -->
+        <div class="relative z-20 w-full flex justify-center py-8 bg-gradient-to-t from-void via-void/95 to-transparent shrink-0">
+             <a href="#" class="group relative inline-flex items-center justify-center px-12 py-4 overflow-hidden font-header font-medium tracking-[0.3em] text-gold-300 transition-all duration-300 bg-black/40 border border-gold-500/30 rounded-sm hover:border-gold-400 hover:shadow-[0_0_30px_rgba(212,175,55,0.2)] backdrop-blur-md">
+                <!-- Glare Effect -->
+                <div class="absolute inset-0 w-0 bg-gold-400/10 transition-all duration-[400ms] ease-out group-hover:w-full"></div>
+                <!-- Button Text -->
+                <span class="relative flex items-center gap-4 text-xs md:text-sm uppercase group-hover:text-gold-100 transition-colors">
+                    View Full Gallery
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5"></i>
+                </span>
+            </a>
+        </div>
+
+    </section>
+
+    <!-- Transmutation Interactive Section -->
+    <section class="relative bg-transparent overflow-hidden z-10" id="sponsors">
+        <div class="absolute inset-0 z-0">
+            <canvas id="alchemyCanvas"></canvas>
+        </div>
+        
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col gap-12 py-20">
+            <div class="text-center mb-6">
+                <h2 class="font-header tracking-[0.3em] mb-4 text-sm font-semibold text-gold-500 uppercase">
+                    OUR PREVIOUS SPONSORS
+                </h2>
+            </div>
+
+            <!-- 3D Sponsor Stack Carousel -->
+            <div class="scene relative w-full max-w-6xl mx-auto h-80 flex items-center justify-center" style="perspective: 1400px;">
+                <div id="sponsor-stack" class="relative w-full h-full"></div>
+            </div>
+
+            <!-- View All Sponsors Button -->
+            <div class="text-center mt-8">
+                <a href="#sponsors" class="group relative inline-flex items-center gap-3 px-8 py-3 overflow-hidden rounded-sm bg-void border border-gold-500/50 transition-all duration-300 hover:border-gold-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                    <!-- Hover Fill -->
+                    <div class="absolute inset-0 w-0 bg-gold-500/10 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                    
+                    <span class="relative font-header text-xs tracking-[0.3em] text-gold-300 group-hover:text-gold-200 uppercase">View All Sponsors</span>
+                    <i data-lucide="arrow-right" class="relative w-4 h-4 text-gold-300"></i>
+                </a>
+            </div>
+        </div>
+
+    <style>
+        .scene .card {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transition: 
+                transform 1s cubic-bezier(0.25, 0.1, 0.25, 1),
+                opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1),
+                width 1s cubic-bezier(0.25, 0.1, 0.25, 1),
+                height 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transform-style: preserve-3d;
+            will-change: transform, opacity;
+            background: linear-gradient(135deg, rgb(10, 10, 10) 0%, rgb(20, 20, 20) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            overflow: hidden;
+        }
+        
+        .scene .card img {
+            transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: grayscale(20%) brightness(0.95);
+            border-radius: 8px;
+        }
+        
+        .scene .card > div {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+    </style>
+
+    <script>
+        (function() {
+            const stack = document.getElementById("sponsor-stack");
+            const cardTemplates = [
+                { img: "Logos/1. TGH Logo White.png", alt: "The Global Hues" },
+                { img: "Logos/abp majha.webp", alt: "ABP Majha" },
+                { img: "Logos/akash byjus.png", alt: "Akash Byjus" },
+                { img: "Logos/bootstart.webp", alt: "Bootstart" },
+                { img: "Logos/Business_Sphere_Logo_final.png", alt: "Business Sphere" },
+                { img: "Logos/Copy of campus-times-pune-official-logo-round-2023.png", alt: "Campus Times" },
+                { img: "Logos/Dainik_Bhaskar.jpg", alt: "Dainik Bhaskar" },
+                { img: "Logos/Digital Prabhat_Logo.jpg", alt: "Digital Prabhat" },
+                { img: "Logos/entrepreneurs of india.png", alt: "Entrepreneurs of India" },
+                { img: "Logos/epunyanagari.png", alt: "Punyanagri" },
+                { img: "Logos/kumar pacific.jpg", alt: "Kumar Pacific Mall" },
+                { img: "Logos/MARKSMENDAILY-01 (2).png", alt: "Marksmen Daily" },
+                { img: "Logos/range.webp", alt: "Range Publicity" },
+                { img: "Logos/red-fm15.webp", alt: "Red FM" },
+                { img: "Logos/saamana-logo-mobile-1024x225.png", alt: "Saamana" },
+                { text: "SI", alt: "Sponsor SI" },
+                { text: "SN", alt: "Sponsor SN" },
+                { img: "Logos/StartupTalky_square_png.png", alt: "Startup Talky" },
+                { img: "Logos/Zee-24-taas.jpg", alt: "Zee 24 Taas" },
+                { img: "Logos/unstop.png", alt: "Unstop" }
+            ];
+            
+            let cards = [];
+            let positions = [];
+            
+            function init() {
+                stack.innerHTML = '';
+                cards = [];
+                positions = [];
+                
+                // Create 60 cards (3 full cycles of 20) for ultra-smooth wrapping
+                for (let i = 0; i < 60; i++) {
+                    const template = cardTemplates[i % cardTemplates.length];
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    
+                    if (template.img) {
+                        card.innerHTML = `<img src="${template.img}" alt="${template.alt}" />`;
+                    } else if (template.text) {
+                        card.innerHTML = `<div class="w-full h-full flex items-center justify-center">
+                            <span class="text-gold-300 text-4xl font-bold font-header">${template.text}</span>
+                        </div>`;
+                    }
+                    
+                    stack.appendChild(card);
+                    cards.push(card);
+                    positions.push(i - 30); // Center at position 0
+                }
+            }
+            
+            function render() {
+                cards.forEach((card, i) => {
+                    const pos = positions[i];
+                    const abs = Math.abs(pos);
+                    
+                    // Smoother scale curve with better center emphasis
+                    let scale;
+                    if (pos === 0) {
+                        scale = 1.2; // Center card bigger
+                    } else {
+                        const scaleFactor = 1 / (1 + abs * 0.18);
+                        scale = Math.max(0.5, scaleFactor);
+                    }
+                    
+                    // Calculate dimensions - RECTANGULAR SHAPE
+                    const baseWidth = 320;
+                    const baseHeight = 220;
+                    const width = baseWidth * scale;
+                    const height = baseHeight * scale;
+                    
+                    card.style.width = width + 'px';
+                    card.style.height = height + 'px';
+                    
+                    // Only show cards within range - REDUCED for fewer visible cards
+                    if (abs < 4) {
+                        card.style.display = 'flex';
+                        
+                        // Smoother spacing and depth - INCREASED spacing
+                        const xOffset = pos * 200 * (1 - abs * 0.01);
+                        const zOffset = -abs * 180;
+                        const yOffset = abs * 12;
+                        
+                        // Transform from center point of the card
+                        card.style.transform = `
+                            translate(-50%, -50%)
+                            translateX(${xOffset}px)
+                            translateY(${yOffset}px)
+                            translateZ(${zOffset}px)
+                            rotateY(${pos * 2}deg)
+                        `;
+                        
+                        // Smoother opacity curve
+                        const opacityFactor = 1 / (1 + abs * 0.2);
+                        card.style.opacity = Math.max(0.2, opacityFactor);
+                        card.style.zIndex = Math.floor(100 - abs * 10);
+                        
+                        // Add subtle shadow for depth
+                        const shadowBlur = 20 + abs * 10;
+                        const shadowOpacity = 0.3 - abs * 0.03;
+                        card.style.boxShadow = `0 ${abs * 5}px ${shadowBlur}px rgba(0,0,0,${Math.max(0, shadowOpacity)})`;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            function advance() {
+                // Move all positions to the left
+                positions = positions.map(p => p - 1);
+                
+                // Wrap cards from left to right
+                positions.forEach((pos, i) => {
+                    if (pos < -30) {
+                        const maxPos = Math.max(...positions);
+                        positions[i] = maxPos + 1;
+                    }
+                });
+                
+                render();
+            }
+            
+            init();
+            render();
+            
+            // Slower interval for smoother feel
+            setInterval(advance, 3500);
+        })();
+    </script>
+
+    <!-- Register Section -->
+    <section id="register" class="py-16 md:py-24 px-6 relative z-10 overflow-hidden">
+        <!-- Background Glow Effects -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto relative">
+            <!-- Title -->
+            <div class="text-center mb-12 animate-fade-in-up">
+                <h2 class="font-header text-3xl md:text-5xl text-center mb-4 uppercase tracking-widest text-gold-300">
+                    Register Now
+                </h2>
+                <p class="font-body text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
+                    Secure your spot at Vishwapreneur'26 and be part of the entrepreneurial revolution
+                </p>
+            </div>
+
+            <!-- Register Card -->
+            <div class="relative border border-gold-700/30 rounded-2xl p-8 md:p-12 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-500 group">
+                <!-- Corner Decorations -->
+                <div class="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-gold-500/30 rounded-tl-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
+                <div class="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-gold-500/30 rounded-tr-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
+                <div class="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-gold-500/30 rounded-bl-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
+                <div class="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-gold-500/30 rounded-br-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
+                
+                <!-- Content -->
+                <div class="text-center mb-8">
+                    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold-500/10 border border-gold-500/30 mb-6 animate-pulse-slow">
+                        <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-header text-2xl md:text-3xl text-gold-200 mb-3 tracking-wide">Get Your Pass</h3>
+                    <p class="text-gray-400 text-sm md:text-base mb-8">Join us on <span class="text-gold-400 font-semibold">1st & 2nd March 2026</span></p>
+                    
+                    <!-- Direct Register Button -->
+                    <a href="https://learner.vierp.in/events" target="_blank" class="group/btn relative inline-flex items-center gap-3 px-10 py-4 overflow-hidden rounded-lg bg-gradient-to-r from-gold-600 to-gold-500 transition-all duration-300 hover:from-gold-500 hover:to-gold-400 hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] transform hover:scale-105">
+                        <!-- Shimmer -->
+                        <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover/btn:translate-x-full transition-transform duration-700"></div>
+                        
+                        <span class="relative font-header text-sm tracking-[0.2em] text-black uppercase font-bold">Register Now</span>
+                        <svg class="relative w-5 h-5 text-black transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Divider -->
+                <div class="flex items-center gap-4 my-8">
+                    <div class="flex-1 h-px bg-gradient-to-r from-transparent to-gold-500/30"></div>
+                    <span class="text-gold-500/50 text-xs tracking-widest uppercase">or</span>
+                    <div class="flex-1 h-px bg-gradient-to-l from-transparent to-gold-500/30"></div>
+                </div>
+                
+                <!-- How to Register Dropdown -->
+                <div class="w-full">
+                    <button onclick="toggleRegisterDropdown()" id="register-dropdown-btn" class="w-full group/how flex items-center justify-between px-6 py-4 bg-charcoal/80 border border-gold-700/30 rounded-xl transition-all duration-300 hover:border-gold-500/50 hover:bg-charcoal">
+                        <span class="font-header text-gold-200 text-sm md:text-base tracking-wide flex items-center gap-3">
+                            <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            How to Register?
+                        </span>
+                        <svg id="register-dropdown-icon" class="w-5 h-5 text-gold-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    
+                    <!-- Dropdown Content -->
+                    <div id="register-dropdown-content" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="pt-6 pb-2 px-2">
+                            <!-- Tab Buttons -->
+                            <div class="flex flex-col sm:flex-row gap-3 mb-6">
+                                <button onclick="switchRegisterTab('external')" id="tab-external" class="register-tab flex-1 py-3 px-4 rounded-lg font-header text-xs tracking-wider transition-all duration-300 bg-gold-500/20 border border-gold-500/50 text-gold-200">
+                                    Other Universities
+                                </button>
+                                <button onclick="switchRegisterTab('vu')" id="tab-vu" class="register-tab flex-1 py-3 px-4 rounded-lg font-header text-xs tracking-wider transition-all duration-300 bg-charcoal border border-gold-700/30 text-gray-400 hover:border-gold-500/30">
+                                    Vishwakarma University
+                                </button>
+                            </div>
+                            
+                            <!-- External Students Instructions -->
+                            <div id="instructions-external" class="register-instructions">
+                                <div class="space-y-3">
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.05s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">1</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Visit <a href="https://learner.vierp.in/events" target="_blank" class="text-gold-400 hover:text-gold-300 underline underline-offset-2 transition-colors">learner.vierp.in/events</a></p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.1s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">2</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Click on <span class="text-gold-400">sign-up button</span> on the bottom left corner</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.15s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">3</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Enter your email address & verify the OTP received</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.2s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">4</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Fill up the required details & set a password</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.25s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">5</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Login using your email and password</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.3s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">6</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">On the top left corner of your dashboard, click on the <span class="text-gold-400">dropdown</span></p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.35s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">7</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Click on <span class="text-gold-400">Pay Event Fees</span></p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.4s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">8</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Select Organising institute as <span class="text-gold-400">VIIT, Pune</span> from dropdown menu</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.45s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">9</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Select event as <span class="text-gold-400">VISHWAPRENEUR 25</span> from dropdown</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.5s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">10</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Select ticket type: <span class="text-gold-400">VIP-external</span> or <span class="text-gold-400">Regular-external</span></p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.55s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">11</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Click on <span class="text-gold-400">Pay</span> and select payment option</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.6s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">12</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">After successful payment, receipt will be generated and confirmation email sent within 24 hours</p>
+                                    </div>
+                                    <div class="flex gap-4 items-center p-4 bg-gold-500/10 rounded-lg border border-gold-500/30 mt-4 animate-fade-in-up" style="animation-delay: 0.65s">
+                                        <svg class="w-5 h-5 text-gold-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <p class="text-gold-300 text-sm font-medium">Please make sure to note down your Reference number</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- VU Students Instructions -->
+                            <div id="instructions-vu" class="register-instructions hidden">
+                                <div class="space-y-3">
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.05s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">1</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Login to <a href="https://learner.vierp.in" target="_blank" class="text-gold-400 hover:text-gold-300 underline underline-offset-2 transition-colors">learner.vierp</a> using your <span class="text-gold-400">PRN number</span> and password</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.1s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">2</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Click on <span class="text-gold-400">dropdown menu</span> on the top left corner of the dashboard</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.15s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">3</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Select <span class="text-gold-400">Accounts section</span></p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.2s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">4</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Click on <span class="text-gold-400">Pay Event Fees</span> from the dropdown</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.25s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">5</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Select Organising institute as <span class="text-gold-400">VIIT, Pune</span> from dropdown menu</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.3s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">6</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Select event as <span class="text-gold-400">VISHWAPRENEUR 25</span> from dropdown</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.35s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">7</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Select ticket type: <span class="text-gold-400">VIP</span> or <span class="text-gold-400">Regular</span></p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.4s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">8</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">Click on <span class="text-gold-400">Pay</span> and select payment option</p>
+                                    </div>
+                                    <div class="flex gap-4 items-start p-4 bg-void/50 rounded-lg border border-gold-700/20 transition-all duration-300 hover:border-gold-500/30 hover:bg-void/70 group/step animate-fade-in-up" style="animation-delay: 0.45s">
+                                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-sm font-bold group-hover/step:bg-gold-500/30 transition-all">9</span>
+                                        <p class="text-gray-300 text-sm leading-relaxed">After successful payment, receipt will be generated and confirmation email sent within 24 hours</p>
+                                    </div>
+                                    <div class="flex gap-4 items-center p-4 bg-gold-500/10 rounded-lg border border-gold-500/30 mt-4 animate-fade-in-up" style="animation-delay: 0.5s">
+                                        <svg class="w-5 h-5 text-gold-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <p class="text-gold-300 text-sm font-medium">Please make sure to note down your Reference number</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Register Dropdown Toggle
+        function toggleRegisterDropdown() {
+            const content = document.getElementById('register-dropdown-content');
+            const icon = document.getElementById('register-dropdown-icon');
+            const btn = document.getElementById('register-dropdown-btn');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+                btn.classList.remove('border-gold-500/50');
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+                btn.classList.add('border-gold-500/50');
+            }
+        }
+        
+        // Register Tab Switching
+        function switchRegisterTab(tab) {
+            const tabExternal = document.getElementById('tab-external');
+            const tabVu = document.getElementById('tab-vu');
+            const instructionsExternal = document.getElementById('instructions-external');
+            const instructionsVu = document.getElementById('instructions-vu');
+            
+            if (tab === 'external') {
+                tabExternal.classList.add('bg-gold-500/20', 'border-gold-500/50', 'text-gold-200');
+                tabExternal.classList.remove('bg-charcoal', 'border-gold-700/30', 'text-gray-400');
+                tabVu.classList.remove('bg-gold-500/20', 'border-gold-500/50', 'text-gold-200');
+                tabVu.classList.add('bg-charcoal', 'border-gold-700/30', 'text-gray-400');
+                instructionsExternal.classList.remove('hidden');
+                instructionsVu.classList.add('hidden');
+            } else {
+                tabVu.classList.add('bg-gold-500/20', 'border-gold-500/50', 'text-gold-200');
+                tabVu.classList.remove('bg-charcoal', 'border-gold-700/30', 'text-gray-400');
+                tabExternal.classList.remove('bg-gold-500/20', 'border-gold-500/50', 'text-gold-200');
+                tabExternal.classList.add('bg-charcoal', 'border-gold-700/30', 'text-gray-400');
+                instructionsVu.classList.remove('hidden');
+                instructionsExternal.classList.add('hidden');
+            }
+            
+            // Update dropdown height
+            const content = document.getElementById('register-dropdown-content');
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                setTimeout(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }, 10);
+            }
+        }
+    </script>
+
+    <!-- Social Media Section -->
+    <section id="social-media" class="py-16 md:py-24 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <!-- Title -->
+            <h2 class="font-header text-3xl md:text-5xl text-center mb-12 md:mb-16 uppercase tracking-widest text-gold-300">
+                Social Media
+            </h2>
+
+            <!-- Testimonial Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-16">
+                <div class="relative p-8 rounded-2xl border border-gold-700/30 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                    <!-- Quote Icon -->
+                    <div class="absolute top-6 left-6">
+                        <svg class="w-10 h-10 text-gold-500/50" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5 3.871 3.871 0 0 1-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5 3.871 3.871 0 0 1-2.748-1.179z"/>
+                        </svg>
+                    </div>
+                    <p class="text-gray-200 text-lg md:text-xl font-medium leading-relaxed pl-12">
+                        It was very inspiring perspective on how drive of being better each day is the important
+                    </p>
+                </div>
+                <div class="relative p-8 rounded-2xl border border-gold-700/30 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                    <!-- Quote Icon -->
+                    <div class="absolute top-6 left-6">
+                        <svg class="w-10 h-10 text-gold-500/50" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5 3.871 3.871 0 0 1-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5 3.871 3.871 0 0 1-2.748-1.179z"/>
+                        </svg>
+                    </div>
+                    <p class="text-gray-200 text-lg md:text-xl font-medium leading-relaxed pl-12">
+                        Attended an incredible session at Vishwapreneur EDC VIIT today, Co-founder of JustDial!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Social Media Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- YouTube -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
+                        <svg class="w-8 h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </div>
+                    <span class="text-2xl md:text-3xl font-bold text-gold-400">5,000+</span>
+                </div>
+                <!-- Instagram -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
+                        <svg class="w-8 h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                        </svg>
+                    </div>
+                    <span class="text-2xl md:text-3xl font-bold text-gold-400">3,200+</span>
+                </div>
+                <!-- LinkedIn -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
+                        <svg class="w-8 h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </div>
+                    <span class="text-2xl md:text-3xl font-bold text-gold-400">2,300+</span>
+                </div>
+                <!-- Twitter -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
+                        <svg class="w-8 h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.06a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.936 4.936 0 0 0 4.604 3.417 9.867 9.867 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0 0 24 4.59z"/>
+                        </svg>
+                    </div>
+                    <span class="text-2xl md:text-3xl font-bold text-gold-400">1,200+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <div id="faq" class="py-16 md:py-24 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <!-- Title -->
+            <h2 class="font-header text-3xl md:text-5xl text-center mb-4 uppercase tracking-widest text-gold-300">
+                Frequently Asked Questions
+            </h2>
+            <p class="font-body text-center text-gray-400 text-sm md:text-base mb-12 max-w-2xl mx-auto italic">
+                If you have any questions or need further details about our programs, feel free to reach out to us through our official email or social media platforms. We're here to help!
+            </p>
+
+            <!-- FAQ Accordion -->
+            <div class="space-y-4" id="faq-accordion">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item border border-gold-700/30 rounded-lg overflow-hidden bg-charcoal/50 backdrop-blur-sm transition-all duration-300 hover:border-gold-500/50">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left group" onclick="toggleFaq(this)">
+                        <span class="font-header text-gold-200 text-sm md:text-base tracking-wide group-hover:text-gold-100 transition-colors">What is Vishwapreneur?</span>
+                        <svg class="faq-icon w-5 h-5 text-gold-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-5 font-body text-gray-300 text-sm md:text-base leading-relaxed">
+                            Vishwapreneur is a National Level Entrepreneurial Summit showcasing entrepreneurs, creators and innovative minds of our century who had the courage to think out of the box. Vishwapreneur is a platform for budding entrepreneurs to seek motivation & guidance through the experiences of successful business tycoons.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item border border-gold-700/30 rounded-lg overflow-hidden bg-charcoal/50 backdrop-blur-sm transition-all duration-300 hover:border-gold-500/50">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left group" onclick="toggleFaq(this)">
+                        <span class="font-header text-gold-200 text-sm md:text-base tracking-wide group-hover:text-gold-100 transition-colors">Who can participate in the event?</span>
+                        <svg class="faq-icon w-5 h-5 text-gold-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-5 font-body text-gray-300 text-sm md:text-base leading-relaxed">
+                            Anyone with an entrepreneurial spirit can participate! Whether you're a student, aspiring entrepreneur, or seasoned professional, Vishwapreneur welcomes all who seek motivation and guidance through the experiences of successful business tycoons.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item border border-gold-700/30 rounded-lg overflow-hidden bg-charcoal/50 backdrop-blur-sm transition-all duration-300 hover:border-gold-500/50">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left group" onclick="toggleFaq(this)">
+                        <span class="font-header text-gold-200 text-sm md:text-base tracking-wide group-hover:text-gold-100 transition-colors">What is the purpose of Vishwapreneur?</span>
+                        <svg class="faq-icon w-5 h-5 text-gold-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-5 font-body text-gray-300 text-sm md:text-base leading-relaxed">
+                            The purpose of the summit is to provide a platform for budding entrepreneurs to seek motivation and guidance through the experiences of successful business tycoons. It aims to inspire and connect innovative minds across the nation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item border border-gold-700/30 rounded-lg overflow-hidden bg-charcoal/50 backdrop-blur-sm transition-all duration-300 hover:border-gold-500/50">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left group" onclick="toggleFaq(this)">
+                        <span class="font-header text-gold-200 text-sm md:text-base tracking-wide group-hover:text-gold-100 transition-colors">Who will be the speakers this year?</span>
+                        <svg class="faq-icon w-5 h-5 text-gold-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-5 font-body text-gray-300 text-sm md:text-base leading-relaxed">
+                            Vishwapreneur will feature successful entrepreneurs, business leaders, experts in the field of entrepreneurship, and anyone who has done something BIG in their life. Stay tuned for speaker announcements!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item border border-gold-700/30 rounded-lg overflow-hidden bg-charcoal/50 backdrop-blur-sm transition-all duration-300 hover:border-gold-500/50">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left group" onclick="toggleFaq(this)">
+                        <span class="font-header text-gold-200 text-sm md:text-base tracking-wide group-hover:text-gold-100 transition-colors">What are the dates and timings?</span>
+                        <svg class="faq-icon w-5 h-5 text-gold-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-5 font-body text-gray-300 text-sm md:text-base leading-relaxed">
+                            The event is scheduled for <span class="text-gold-400 font-semibold">1st and 2nd March 2026</span>. Stay tuned for detailed timings and schedule announcements on our social media channels!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = faqItem.querySelector('.faq-icon');
+            const isOpen = faqItem.classList.contains('faq-open');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('faq-open');
+                    item.querySelector('.faq-answer').style.maxHeight = '0';
+                    item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                    item.style.borderColor = '';
+                }
+            });
+            
+            // Toggle current FAQ
+            if (isOpen) {
+                faqItem.classList.remove('faq-open');
+                answer.style.maxHeight = '0';
+                icon.style.transform = 'rotate(0deg)';
+                faqItem.style.borderColor = '';
+            } else {
+                faqItem.classList.add('faq-open');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+                faqItem.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+            }
+        }
+    </script>
+
+    <!-- Terms and Conditions Section -->
+    <div id="terms" class="py-16 md:py-24 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <!-- Title -->
+            <h2 class="font-header text-3xl md:text-5xl text-center mb-4 uppercase tracking-widest text-gold-300">
+                Terms and Conditions
+            </h2>
+            <p class="font-body text-center text-gray-400 text-sm md:text-base mb-12 max-w-2xl mx-auto italic">
+                Please read these terms carefully before participating in Vishwapreneur'26
+            </p>
+
+            <!-- Content Grid -->
+            <div class="grid md:grid-cols-2 gap-6 font-body">
+                <!-- Left Column -->
+                <div class="space-y-4">
+                    <!-- Age Limit -->
+                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Age Limit</h3>
+                        <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-gray-300">
+                            <li>Any person above the age of 13 is allowed to join us for Vishwapreneur'26</li>
+                        </ul>
+                    </div>
+
+                    <!-- Privacy Policy -->
+                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Privacy Policy</h3>
+                        <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-gray-300">
+                            <li>By registering for Vishwapreneur'26, you consent to the collection and use of this information as set forth.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Advertisements & Promotions -->
+                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Advertisements & Promotions</h3>
+                        <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-gray-300">
+                            <li>This website may contain links to third-party websites, products, or services, which may be posted by our affiliates, our partners, or our sponsor. Any kind of promotion regarding them is not allowed.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Ticket Booking Policy -->
+                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Ticket Booking Policy</h3>
+                        <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-gray-300">
+                            <li>Once you book a seat for this event, it cannot be cancelled under any circumstances, and any request for fare refund will not be entertained.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="space-y-4">
+                    <!-- Impermissible Actions -->
+                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 h-full">
+                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Following actions are impermissible</h3>
+                        <ul class="list-disc list-inside space-y-3 text-sm md:text-base text-gray-300">
+                            <li>Use the information in any manner that could interfere with, disable, disrupt, overburden, or otherwise impair the Service</li>
+                            <li>Use the website in any manner that we reasonably believe to be an abuse of or fraud on any payment system.</li>
+                            <li>Access, search, or collect data about Vishwapreneur by any means (automated or otherwise) except as permitted in these Terms or in a separate agreement with EDC VIIT.</li>
+                            <li>Any political comment will not be tolerated regarding Vishwapreneur.</li>
+                            <li>Legal actions will be taken if any kind of malpractice is found.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div id="contact" class="py-16 md:py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <!-- Title -->
+            <h2 class="font-header text-3xl md:text-5xl text-center mb-16 uppercase tracking-widest text-gold-300">
+                Contact Us
+            </h2>
+
+            <!-- Contact Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Speaking Opportunities -->
+                <div class="relative border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
+                    <!-- Background Icon -->
+                    <div class="absolute right-2 bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-24 h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/>
+                        </svg>
+                    </div>
+                    <!-- Icon -->
+                    <div class="text-gold-500 mb-4">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-body text-white text-lg font-semibold mb-3">Speaking Opportunities</h3>
+                    <a href="mailto:curation.vishwapreneur25@gmail.com" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors mb-1">curation.vishwapreneur25@gmail.com</a>
+                    <a href="tel:+919561211033" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors">+91 9561211033</a>
+                </div>
+
+                <!-- Sponsorship Opportunities -->
+                <div class="relative border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
+                    <!-- Background Icon -->
+                    <div class="absolute right-2 bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-24 h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16.48 10.41c-.39.39-1.04.39-1.43 0l-4.47-4.46-7.05 7.04-.66-.63c-1.17-1.17-1.17-3.07 0-4.24l4.24-4.24c1.17-1.17 3.07-1.17 4.24 0L16.48 9c.39.39.39 1.02 0 1.41zm-1.41 1.41-4.47 4.47-7.05-7.05-.63.66c-1.17 1.17-1.17 3.07 0 4.24l4.24 4.24c1.17 1.17 3.07 1.17 4.24 0l5.12-5.12c.39-.39.39-1.02 0-1.41-.39-.39-1.04-.39-1.45-.03z"/>
+                        </svg>
+                    </div>
+                    <!-- Icon -->
+                    <div class="text-gold-500 mb-4">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16.48 10.41c-.39.39-1.04.39-1.43 0l-4.47-4.46-7.05 7.04-.66-.63c-1.17-1.17-1.17-3.07 0-4.24l4.24-4.24c1.17-1.17 3.07-1.17 4.24 0L16.48 9c.39.39.39 1.02 0 1.41zm-1.41 1.41-4.47 4.47-7.05-7.05-.63.66c-1.17 1.17-1.17 3.07 0 4.24l4.24 4.24c1.17 1.17 3.07 1.17 4.24 0l5.12-5.12c.39-.39.39-1.02 0-1.41-.39-.39-1.04-.39-1.45-.03z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-body text-white text-lg font-semibold mb-3">Sponsorship Opportunities</h3>
+                    <a href="mailto:edcflm.sponsorship@gmail.com" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors mb-1">edcflm.sponsorship@gmail.com</a>
+                    <a href="tel:+919970007004" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors">+91 9970007004</a>
+                </div>
+
+                <!-- Collaboration Opportunities -->
+                <div class="relative border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
+                    <!-- Background Icon -->
+                    <div class="absolute right-2 bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-24 h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
+                    </div>
+                    <!-- Icon -->
+                    <div class="text-gold-500 mb-4">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-body text-white text-lg font-semibold mb-3">Collaboration Opportunities</h3>
+                    <a href="mailto:pr.vishwapreneur25@gmail.com" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors mb-1">pr.vishwapreneur25@gmail.com</a>
+                    <a href="tel:+918010165540" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors">+91 8010165540</a>
+                </div>
+
+                <!-- Queries -->
+                <div class="relative border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
+                    <!-- Background Icon -->
+                    <div class="absolute right-2 bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-24 h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <!-- Icon -->
+                    <div class="text-gold-500 mb-4">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-body text-white text-lg font-semibold mb-3">Queries</h3>
+                    <a href="mailto:contact@vishwapreneur.in" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors mb-1">contact@vishwapreneur.in</a>
+                    <a href="tel:+917499404987" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors">+91 7499404987</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <footer class="bg-black py-12 border-t border-gold-900 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-3 mb-6 md:mb-0">
+                <i data-lucide="sparkles" class="text-gold-700 w-5 h-5"></i>
+                <!-- UPDATED FOOTER LOGO -->
+                <span class="font-header text-lg text-gold-700 uppercase">EDC-VIT</span>
+            </div>
+            <div class="text-gray-600 text-sm font-body italic">
+                "The wind carries it in its belly, the nurse thereof is the earth."
+            </div>
+            <div class="flex gap-4 mt-6 md:mt-0">
+                <a href="#" class="text-gray-600 hover:text-gold-500 transition-colors"><i data-lucide="circle" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-600 hover:text-gold-500 transition-colors"><i data-lucide="triangle" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-600 hover:text-gold-500 transition-colors"><i data-lucide="square" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // 1. DOM REFERENCES
+        const geoSection = document.getElementById('geometry');
+        const geoOuter = document.getElementById('geo-outer');
+        const geoTri1 = document.getElementById('geo-tri1');
+        const geoTri2 = document.getElementById('geo-tri2');
+        const geoSquare = document.getElementById('geo-square');
+        const geoCenter = document.getElementById('geo-center');
+        const geoScatter = document.getElementById('geo-scatter');
+        
+        const geoPortal = document.getElementById('geo-portal'); // The Wipe
+        const cinematicContainer = document.getElementById('cinematic-container'); // The Video Frame
+        const cinematicTitle = document.getElementById('cinematic-title-outside'); // The New Title
+        const mainVideo = document.getElementById('main-video');
+        
+        const geoTitle = document.getElementById('geo-title');
+        const svgContainer = document.getElementById('svg-container');
+
+        const symbolSection = document.getElementById('symbols');
+        const helixGroup = document.getElementById('helix-group');
+        const spiralItems = document.querySelectorAll('.spiral-item');
+        const spiralSvg = document.getElementById('spiral-svg');
+        const canvas = document.getElementById('alchemyCanvas');
+        const ctx = canvas ? canvas.getContext('2d') : null;
+        const textRing = document.getElementById('text-ring');
+        const navToggleBtn = document.getElementById('nav-toggle');
+        const mainNav = document.getElementById('main-nav');
+        const sponsorsSection = document.getElementById('sponsors'); // Added Reference
+        
+        // 2. GLOBAL VARIABLES
+        let width, height;
+        let itemSpacingY = 800; 
+        const ITEM_ANGLE_STEP = 180; 
+        const SPIRAL_RADIUS_BASE = 0.30; 
+        const ROTATION_SPEED_PER_ITEM = 360; 
+        const phrase = "TRANSFORMATION • CREATION • VISION • IMPACT • GROWTH • PATIENCE • INSPIRATION • ";
+        const charElements = [];
+        let particles = [];
+        let sparkles = [];
+        const particleCount = 200;
+        const mouse = { x: null, y: null, radius: 100 };
+        // Removed references to leadEl/goldEl since those elements are removed
+        let isNavOpen = false;
+
+        // 3. HELPER FUNCTIONS & LOGIC
+
+        // Navbar Toggle
+        function toggleNav() {
+            isNavOpen = !isNavOpen;
+            if (isNavOpen) {
+                mainNav.classList.add('nav-visible');
+                navToggleBtn.classList.add('rotate-180-active');
+            } else {
+                mainNav.classList.remove('nav-visible');
+                navToggleBtn.classList.remove('rotate-180-active');
+            }
+        }
+
+        if(navToggleBtn) {
+            navToggleBtn.addEventListener('click', toggleNav);
+        }
+
+        // Sacred Text Init
+        function initSacredText() {
+            if (!textRing) return;
+            textRing.innerHTML = '';
+            charElements.length = 0;
+            const radius = 42; 
+            const angleStep = 360 / phrase.length;
+            const vmin = Math.min(window.innerWidth, window.innerHeight) / 100;
+            const rPx = radius * vmin;
+
+            for (let i = 0; i < phrase.length; i++) {
+                const char = phrase[i];
+                const span = document.createElement('span');
+                span.innerText = char;
+                span.className = 'sacred-char text-xs md:text-sm tracking-widest'; 
+                
+                const theta = (i * angleStep - 90) * (Math.PI / 180);
+                const targetX = rPx * Math.cos(theta);
+                const targetY = rPx * Math.sin(theta);
+                const targetRot = i * angleStep; 
+
+                const startX = (Math.random() - 0.5) * window.innerWidth * 1.5;
+                const startY = (Math.random() - 0.5) * window.innerHeight * 1.5;
+                const startRot = Math.random() * 360;
+
+                charElements.push({
+                    element: span,
+                    startX: startX, startY: startY, startRot: startRot,
+                    targetX: targetX, targetY: targetY, targetRot: targetRot
+                });
+
+                span.style.transform = `translate(${startX}px, ${startY}px) rotate(${startRot}deg)`;
+                span.style.opacity = '0';
+                textRing.appendChild(span);
+            }
+        }
+
+        // Spiral Path Creation
+        function createSpiralPath() {
+            if (!spiralSvg) return;
+
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            const centerX = w / 2;
+            const centerY = h / 2;
+            const radiusX = Math.min(w, h) * SPIRAL_RADIUS_BASE;
+            
+            const totalItemsRange = 6; 
+            const totalSpiralHeight = itemSpacingY * totalItemsRange; 
+            const pointsTotal = 400;
+            
+            let d = ``;
+            const startY = centerY - totalSpiralHeight / 2;
+            
+            let first = true;
+            for(let i=0; i<=pointsTotal; i++) {
+                const t = i / pointsTotal;
+                const currentY = startY + t * totalSpiralHeight;
+                
+                const relativeY = currentY - centerY;
+                const angleDeg = (relativeY / itemSpacingY) * ITEM_ANGLE_STEP;
+                const angleRad = angleDeg * (Math.PI / 180);
+                
+                const x = centerX + Math.cos(angleRad) * radiusX;
+                const zOffset = Math.sin(angleRad) * 40; 
+                
+                if (first) {
+                    d += `M ${x} ${currentY + zOffset}`;
+                    first = false;
+                } else {
+                    d += ` L ${x} ${currentY + zOffset}`;
+                }
+            }
+            
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", d);
+            path.setAttribute("stroke", "url(#goldGradient)");
+            path.setAttribute("stroke-width", "0.5"); 
+            path.setAttribute("fill", "none");
+            path.setAttribute("opacity", "0.3");
+            path.id = 'spiral-line';
+            
+            const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+            const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+            grad.id = "goldGradient";
+            grad.innerHTML = '<stop offset="0%" stop-color="#bf953f" /><stop offset="50%" stop-color="#b38728" /><stop offset="100%" stop-color="#aa771c" />';
+            defs.appendChild(grad);
+            
+            spiralSvg.innerHTML = '';
+            spiralSvg.appendChild(defs);
+            spiralSvg.appendChild(path);
+        }
+
+        // Resize Handler
+        function onResize() {
+            if(canvas) {
+                width = canvas.width = window.innerWidth;
+                
+                // FIXED: Set canvas height to the actual height of the sponsors section
+                // This ensures the background extends to cover all wrapped rows
+                if (sponsorsSection) {
+                    height = canvas.height = Math.max(window.innerHeight, sponsorsSection.offsetHeight);
+                } else {
+                    height = canvas.height = window.innerHeight;
+                }
+            }
+            itemSpacingY = window.innerHeight * 0.65;
+            createSpiralPath();
+            initSacredText();
+        }
+
+        // Particle System Classes
+        class Sparkle {
+            constructor(x, y, isMouse = false) {
+                this.x = x + (Math.random() - 0.5) * 20;
+                this.y = y + (Math.random() - 0.5) * 20;
+                this.vx = (Math.random() - 0.5) * 1;
+                this.vy = (Math.random() - 0.5) * 1;
+                this.size = Math.random() * 2 + 0.5;
+                this.life = 1; 
+                this.decay = Math.random() * 0.03 + 0.01;
+                this.color = isMouse ? '#FFF' : '#FFD700';
+            }
+            update() { this.x += this.vx; this.y += this.vy; this.life -= this.decay; this.y -= 0.5; }
+            draw() {
+                if(!ctx) return;
+                ctx.globalAlpha = Math.max(0, this.life);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y - this.size); ctx.lineTo(this.x, this.y + this.size);
+                ctx.moveTo(this.x - this.size, this.y); ctx.lineTo(this.x + this.size, this.y);
+                ctx.strokeStyle = this.color; ctx.lineWidth = 1; ctx.stroke();
+                ctx.arc(this.x, this.y, this.size/2, 0, Math.PI * 2); ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+                this.isGold = false;
+                this.colorLead = `rgba(80, 80, 80, ${Math.random() * 0.5 + 0.2})`;
+                this.colorGold = `rgba(212, 175, 55, ${Math.random() * 0.8 + 0.2})`;
+                this.transmutationProgress = 0;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+                if (mouse.x != null) {
+                    const dx = mouse.x - this.x; const dy = mouse.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        if (!this.isGold) {
+                            this.isGold = true;
+                            for(let i=0; i<3; i++) sparkles.push(new Sparkle(this.x, this.y));
+                        }
+                        this.vx += dx * 0.0001; this.vy += dy * 0.0001;
+                    }
+                }
+                if (this.isGold && this.transmutationProgress < 1) this.transmutationProgress += 0.05;
+                if (this.isGold && Math.random() < 0.005) sparkles.push(new Sparkle(this.x, this.y));
+            }
+            draw() {
+                if(!ctx) return;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * (1 + (this.transmutationProgress * 0.5)), 0, Math.PI * 2);
+                if (this.isGold) {
+                    ctx.fillStyle = this.colorGold; ctx.shadowBlur = 10 * this.transmutationProgress; ctx.shadowColor = '#D4AF37';
+                } else {
+                    ctx.fillStyle = this.colorLead; ctx.shadowBlur = 0;
+                }
+                ctx.fill(); ctx.shadowBlur = 0;
+            }
+        }
+
+        function initParticles() { particles = []; for (let i = 0; i < particleCount; i++) particles.push(new Particle()); }
+        
+        function animate() {
+            if(!ctx) return;
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i; j < particles.length; j++) {
+                    if (particles[i].isGold && particles[j].isGold) {
+                        const dx = particles[i].x - particles[j].x; const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 80) {
+                            ctx.beginPath(); ctx.strokeStyle = `rgba(212, 175, 55, ${0.2 * (1 - distance/80)})`;
+                            ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                        }
+                    }
+                }
+                particles[i].update(); particles[i].draw();
+            }
+            for (let i = sparkles.length - 1; i >= 0; i--) {
+                sparkles[i].update(); sparkles[i].draw(); if (sparkles[i].life <= 0) sparkles.splice(i, 1);
+            }
+        }
+
+        // 4. EVENT LISTENERS & INITIALIZATION
+        window.addEventListener('resize', onResize);
+        
+        window.addEventListener('scroll', () => {
+            const viewHeight = window.innerHeight;
+            
+            // Geometry Section Logic
+            if (geoSection) {
+               const rect = geoSection.getBoundingClientRect();
+               const totalHeight = rect.height - viewHeight; 
+               let progress = -1 * rect.top / totalHeight;
+               progress = Math.max(0, Math.min(1, progress));
+
+               const reassemblyPhase = Math.max(0, Math.min(1, progress / 0.6));
+               const ease = p => p * p * (3 - 2 * p);
+               const p = ease(reassemblyPhase);
+
+               if(geoOuter) {
+                   geoOuter.style.transform = `rotate(${(1-p)*180}deg) scale(${1 + (1-p)*0.5})`;
+                   geoOuter.style.opacity = p;
+               }
+               if(geoTri1) { geoTri1.style.transform = `translateY(${(1-p) * -200}px)`; geoTri1.style.opacity = p; }
+               if(geoTri2) { geoTri2.style.transform = `translateY(${(1-p) * 200}px)`; geoTri2.style.opacity = p; }
+               if(geoSquare) { geoSquare.style.transform = `rotate(${(1-p) * -90}deg) scale(${p})`; geoSquare.style.opacity = p; }
+               if(geoCenter) { 
+                   const centerP = Math.max(0, (reassemblyPhase - 0.5) * 2);
+                   geoCenter.style.transform = `scale(${centerP})`; geoCenter.style.opacity = centerP; 
+               }
+               if(geoScatter) { geoScatter.style.transform = `scale(${1 + p*2}) rotate(${p*360}deg)`; geoScatter.style.opacity = 1 - p; }
+
+               charElements.forEach(char => {
+                   const curX = char.startX + (char.targetX - char.startX) * p;
+                   const curY = char.startY + (char.targetY - char.startY) * p;
+                   const curRot = char.startRot + (char.targetRot - char.startRot) * p;
+                   char.element.style.transform = `translate(${curX}px, ${curY}px) rotate(${curRot}deg)`;
+                   char.element.style.opacity = Math.min(1, p * 2); 
+               });
+
+               // Phase 3: Portal Expansion & Video Reveal
+               if(geoPortal && cinematicContainer) {
+                   const wipeStart = 0.6;
+                   const wipeEnd = 0.8;
+                   let wipeP = 0;
+                   if (progress > wipeStart) {
+                       wipeP = (progress - wipeStart) / (wipeEnd - wipeStart);
+                       wipeP = Math.max(0, Math.min(1, wipeP));
+                   }
+                   const easeWipe = wipeP * wipeP * (3 - 2 * wipeP);
+                   const radius = easeWipe * 150; 
+                   geoPortal.style.clipPath = `circle(${radius}% at 50% 50%)`;
+
+                   if (svgContainer) svgContainer.style.opacity = 1 - wipeP;
+                   if (textRing) textRing.style.opacity = 1 - wipeP;
+                   if (geoTitle) geoTitle.style.opacity = 1 - wipeP;
+
+                   const videoStart = 0.8;
+                   const videoEnd = 0.98;
+                   let videoP = 0;
+                   if (progress > videoStart) {
+                       videoP = (progress - videoStart) / (videoEnd - videoStart);
+                       videoP = Math.max(0, Math.min(1, videoP));
+                   }
+                   cinematicContainer.style.opacity = videoP;
+                   if(cinematicTitle) cinematicTitle.style.opacity = videoP;
+                   cinematicContainer.style.transform = `scale(${0.95 + (videoP * 0.05)})`;
+                   
+                   if (videoP > 0.01 && mainVideo) {
+                       mainVideo.style.opacity = 1;
+                       if (mainVideo.paused) {
+                            mainVideo.play().catch(e => console.log("Auto-play prevented", e));
+                       }
+                   }
+               }
+            }
+
+            // Spiral Section
+            if (symbolSection) {
+                const rect = symbolSection.getBoundingClientRect();
+                const totalHeight = rect.height - viewHeight;
+                let scrollP = -1 * rect.top / totalHeight;
+                
+                const START_INDEX = -0.5; 
+                const END_INDEX = 4.5;
+                const currentFocus = START_INDEX + (END_INDEX - START_INDEX) * scrollP;
+                
+                const groupTranslateY = -1 * currentFocus * itemSpacingY;
+                const groupRotateY = -1 * currentFocus * ROTATION_SPEED_PER_ITEM;
+                
+                if(helixGroup) helixGroup.style.transform = `translateY(${groupTranslateY}px) rotateY(${groupRotateY}deg)`;
+                if(spiralSvg) spiralSvg.style.transform = `translateY(${groupTranslateY}px) rotateY(${groupRotateY}deg)`;
+
+                const currentRadius = Math.min(window.innerWidth, window.innerHeight) * SPIRAL_RADIUS_BASE;
+
+                spiralItems.forEach((item, index) => {
+                    const itemAngle = index * ITEM_ANGLE_STEP;
+                    const itemY = index * itemSpacingY;
+                    const rad = itemAngle * (Math.PI / 180);
+                    const x = currentRadius * Math.cos(rad);
+                    const z = currentRadius * Math.sin(rad);
+                    const rotY = index * ROTATION_SPEED_PER_ITEM;
+                    const distFromFocus = Math.abs(currentFocus - index);
+                    
+                    let glowIntensity = 0;
+                    if (distFromFocus < 0.3) {
+                        glowIntensity = 1 - (distFromFocus / 0.3);
+                        glowIntensity = Math.pow(glowIntensity, 0.6); 
+                    }
+
+                    const quoteEl = item.querySelector('.quote-container');
+                    if (quoteEl) {
+                        let quoteOpacity = 0;
+                        if (distFromFocus < 0.25) {
+                            quoteOpacity = 1 - (distFromFocus / 0.25);
+                            quoteOpacity = Math.pow(quoteOpacity, 0.5); 
+                        }
+                        quoteEl.style.opacity = quoteOpacity;
+                        const slideOffset = (1 - quoteOpacity) * 20;
+                        quoteEl.style.transform = `translateY(calc(-50% + ${slideOffset}px))`;
+                    }
+
+                    if (glowIntensity > 0.01) {
+                        const coreColor = `rgba(255, 223, 0, ${glowIntensity * 0.9})`; 
+                        const rimColor = `rgba(184, 134, 11, ${glowIntensity * 0.7})`; 
+                        item.style.boxShadow = `inset 0 0 ${15 * glowIntensity}px ${coreColor}, 0 0 ${2 * glowIntensity}px ${rimColor}, 0 0 ${25 * glowIntensity}px ${rimColor}`;
+                        item.style.borderColor = `rgba(255, 215, 0, ${0.4 + 0.6 * glowIntensity})`;
+                        item.style.backgroundColor = `rgba(20, 20, 20, ${0.3 + 0.4 * glowIntensity})`;
+                        item.style.zIndex = 100;
+                        const h3 = item.querySelector('h3');
+                        if (h3) {
+                            h3.style.textShadow = `0 1px 2px rgba(0,0,0,0.8), 0 0 ${10 * glowIntensity}px rgba(255, 215, 0, 0.6)`;
+                            h3.style.color = '#FFF'; 
+                            h3.style.letterSpacing = `${2 + glowIntensity}px`; 
+                        }
+                    } else {
+                        item.style.boxShadow = 'inset 0 0 20px rgba(255, 255, 255, 0.03), 0 4px 10px rgba(0, 0, 0, 0.6)';
+                        item.style.borderColor = 'rgba(212, 175, 55, 0.1)';
+                        item.style.backgroundColor = 'rgba(10, 10, 10, 0.3)';
+                        item.style.zIndex = 10;
+                        const h3 = item.querySelector('h3');
+                        if (h3) {
+                            h3.style.textShadow = 'none';
+                            h3.style.color = ''; 
+                            h3.style.letterSpacing = '2px';
+                        }
+                    }
+
+                    let opacity = 0;
+                    if (distFromFocus < 0.8) {
+                        opacity = 1;
+                    } else {
+                        opacity = 1 - Math.pow((distFromFocus - 0.8) / 1.0, 2);
+                        opacity = Math.max(0, Math.min(1, opacity));
+                    }
+                    
+                    const scale = 0.6 + (0.4 * opacity) + (0.02 * glowIntensity);
+                    item.style.opacity = opacity;
+                    item.style.transform = `translate3d(${x}px, ${itemY}px, ${z}px) rotateY(${rotY}deg) scale(${scale})`;
+                });
+            }
+        }, { passive: true });
+
+        // Scroll Reveal Observer (Generic)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // NEW: Sponsor Row Animation Observer
+        const sponsorObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active-row');
+                }
+            })
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.sponsor-row').forEach(row => sponsorObserver.observe(row));
+
+        if(canvas) {
+            window.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+                if (Math.random() < 0.3) sparkles.push(new Sparkle(mouse.x, mouse.y, true));
+            });
+        }
+
+        // --- RANDOM GLOW EFFECT FOR GEOMETRY ---
+        function initRandomGlows() {
+            const geometryLines = document.querySelectorAll('#reassembly-svg path, #reassembly-svg line, #reassembly-svg circle, #reassembly-svg rect, #reassembly-svg polygon');
+            if (!geometryLines.length) return;
+
+            function triggerRandomGlow() {
+                const randomIndex = Math.floor(Math.random() * geometryLines.length);
+                const element = geometryLines[randomIndex];
+                element.classList.add('glow-active');
+                setTimeout(() => { element.classList.remove('glow-active'); }, 2000);
+                const nextTime = Math.random() * 700 + 100;
+                setTimeout(triggerRandomGlow, nextTime);
+            }
+            triggerRandomGlow();
+        }
+
+        // --- HERO PARALLAX EFFECT ---
+        const heroSection = document.getElementById('opus');
+        const heroContent = document.getElementById('hero-content');
+
+        if (heroSection && heroContent) {
+            heroSection.addEventListener('mousemove', (e) => {
+                const rect = heroSection.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const factor = 0.03; 
+                heroContent.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+            });
+            
+            heroSection.addEventListener('mouseleave', () => {
+                heroContent.style.transition = 'transform 0.5s ease-out';
+                heroContent.style.transform = 'translate(0, 0)';
+                setTimeout(() => { heroContent.style.transition = 'transform 0.075s ease-out'; }, 500);
+            });
+            
+            heroSection.addEventListener('mouseenter', () => {
+                 heroContent.style.transition = 'transform 0.075s ease-out';
+            });
+        }
+
+        // Boot
+        onResize();
+        if(ctx) {
+            initParticles();
+            animate();
+        }
+        initRandomGlows();
+        
+        // Reinitialize particles after DOM settles to ensure full coverage
+        setTimeout(() => {
+            onResize();
+            initParticles();
+        }, 100);
+
+    </script>
+</body>
+</html>
