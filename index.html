@@ -244,6 +244,15 @@
             overflow: hidden;
         }
 
+        #alchemyCanvas, #guestCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
         /* Separator Animation */
         .separator-pulse {
             animation: separatorPulse 4s infinite ease-in-out;
@@ -288,6 +297,13 @@
             text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
             will-change: transform, opacity;
             user-select: none;
+        }
+
+        /* Hide sacred text ring on mobile */
+        @media (max-width: 767px) {
+            #text-ring {
+                display: none;
+            }
         }
         
         /* 3D Helix Styles */
@@ -472,6 +488,97 @@
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
         }
 
+        /* Guest Card Mobile Responsiveness */
+        .guest-card > div {
+            padding: 1rem;
+        }
+        @media (min-width: 640px) {
+            .guest-card > div {
+                padding: 1.25rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .guest-card > div {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Guest card image - mobile sizes */
+        .guest-card .w-40 {
+            width: 5rem;
+            height: 5rem;
+            margin-bottom: 0.75rem;
+        }
+        @media (min-width: 640px) {
+            .guest-card .w-40 {
+                width: 7rem;
+                height: 7rem;
+                margin-bottom: 1rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .guest-card .w-40 {
+                width: 10rem;
+                height: 10rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Guest card text - mobile sizes */
+        .guest-card h3 {
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+        @media (min-width: 640px) {
+            .guest-card h3 {
+                font-size: 1rem;
+                margin-bottom: 0.375rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .guest-card h3 {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        .guest-card p {
+            font-size: 0.65rem;
+            line-height: 1.3;
+        }
+        @media (min-width: 640px) {
+            .guest-card p {
+                font-size: 0.75rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .guest-card p {
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Guest card corner decorations - smaller on mobile */
+        .guest-card .w-8 {
+            width: 0.75rem;
+            height: 0.75rem;
+        }
+        @media (min-width: 768px) {
+            .guest-card .w-8 {
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+
+        /* Guest card border radius - smaller on mobile */
+        .guest-card > div {
+            border-radius: 1rem;
+        }
+        @media (min-width: 768px) {
+            .guest-card > div {
+                border-radius: 1rem;
+            }
+        }
+
         /* PORTAL WIPE STYLES */
         #geo-portal {
             position: absolute;
@@ -491,10 +598,10 @@
         #cinematic-container {
             position: absolute;
             /* Padded from screen edges */
-            top: 120px; /* Below Navbar */
-            left: 2rem;
-            right: 2rem;
-            bottom: 2rem;
+            top: 80px; /* Below Navbar */
+            left: 0.75rem;
+            right: 0.75rem;
+            bottom: 0.75rem;
             z-index: 40;
             opacity: 0;
             pointer-events: none; 
@@ -503,6 +610,15 @@
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
             background: #000;
             overflow: hidden; 
+        }
+        
+        @media (min-width: 768px) {
+            #cinematic-container {
+                top: 120px;
+                left: 2rem;
+                right: 2rem;
+                bottom: 2rem;
+            }
         }
 
         /* Inner ornamental border */
@@ -545,13 +661,19 @@
         /* New Outside Title Style */
         #cinematic-title-outside {
             position: absolute;
-            top: 90px; /* Positioned between navbar and video box */
+            top: 60px; /* Positioned between navbar and video box */
             left: 0;
             width: 100%;
             text-align: center;
             z-index: 45;
             opacity: 0;
             pointer-events: none;
+        }
+        
+        @media (min-width: 768px) {
+            #cinematic-title-outside {
+                top: 90px;
+            }
         }
 
         /* RANDOM GOLD GLOW ANIMATION FOR SVG LINES */
@@ -798,10 +920,10 @@
 
     <!-- Hero Section -->
     <header class="relative min-h-screen flex items-center justify-center overflow-x-visible z-10" id="opus">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold-600/5 rounded-full blur-[100px] animate-pulse-slow"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] md:w-[800px] h-[300px] sm:h-[500px] md:h-[800px] bg-gold-600/5 rounded-full blur-[60px] md:blur-[100px] animate-pulse-slow"></div>
         
         <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
-            <svg class="w-[800px] h-[800px] animate-spin-slow text-gold-400" viewBox="0 0 500 500">
+            <svg class="w-[280px] sm:w-[500px] md:w-[800px] h-[280px] sm:h-[500px] md:h-[800px] animate-spin-slow text-gold-400" viewBox="0 0 500 500">
                 <defs>
                     <path id="textCircle" d="M 250, 250 m -200, 0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0"/>
                 </defs>
@@ -813,38 +935,38 @@
                 <circle cx="423" cy="350" r="10" fill="currentColor" />
                 <circle cx="77" cy="350" r="10" fill="currentColor" />
             </svg>
-            <svg class="absolute w-[500px] h-[500px] animate-spin-reverse-slow text-gold-200" viewBox="0 0 500 500">
+            <svg class="absolute w-[200px] sm:w-[350px] md:w-[500px] h-[200px] sm:h-[350px] md:h-[500px] animate-spin-reverse-slow text-gold-200" viewBox="0 0 500 500">
                 <circle cx="250" cy="250" r="150" fill="none" stroke="currentColor" stroke-width="2"/>
                 <rect x="175" y="175" width="150" height="150" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(45 250 250)"/>
                 <circle cx="250" cy="250" r="50" fill="none" stroke="currentColor" stroke-width="1"/>
             </svg>
         </div>
 
-        <div id="hero-content" class="relative z-10 text-center w-full max-w-full px-6 md:px-12 lg:px-20 transition-transform duration-75 ease-out">
+        <div id="hero-content" class="relative z-10 text-center w-full max-w-full px-3 sm:px-6 md:px-12 lg:px-20 transition-transform duration-75 ease-out">
             <!-- UPDATED SUBTITLE -->
-            <p class="font-header text-gold-500 tracking-[0.5em] text-sm mb-4 animate-float uppercase">EDC - VIT PRESENTS</p>
-            <h1 class="font-header text-5xl sm:text-6xl md:text-9xl text-gold-metallic font-black mb-6 tracking-tighter drop-shadow-2xl leading-none">
+            <p class="font-header text-gold-500 tracking-[0.25em] sm:tracking-[0.5em] text-[10px] sm:text-sm mb-3 sm:mb-4 animate-float uppercase">EDC - VIT PRESENTS</p>
+            <h1 class="font-header text-[2rem] sm:text-5xl md:text-9xl text-gold-metallic font-black mb-4 sm:mb-6 tracking-tight sm:tracking-tighter drop-shadow-2xl leading-none">
                 VISHWAPRENEUR
             </h1>
-            <p class="font-body text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto italic font-light leading-relaxed mb-10">
+            <p class="font-body text-sm sm:text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto italic font-light leading-relaxed mb-6 sm:mb-10 px-1">
                 “In the crucible of entrepreneurship, ideas are tested, risks are refined, and vision is transmuted into value.”
             </p>
             
             <!-- NEW: Explore & Register Buttons -->
-            <div class="mb-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#geometry" class="group relative inline-flex items-center gap-3 px-8 py-3 overflow-hidden rounded-sm bg-void border border-gold-500/50 transition-all duration-300 hover:border-gold-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+            <div class="mb-8 sm:mb-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                <a href="#geometry" class="group relative inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-8 py-2 sm:py-3 overflow-hidden rounded-sm bg-void border border-gold-500/50 transition-all duration-300 hover:border-gold-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
                     <!-- Hover Fill -->
                     <div class="absolute inset-0 w-0 bg-gold-500/10 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
                     
-                    <span class="relative font-header text-xs tracking-[0.3em] text-gold-300 group-hover:text-gold-200 uppercase">Explore Now</span>
+                    <span class="relative font-header text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] text-gold-300 group-hover:text-gold-200 uppercase">Explore Now</span>
                     <i data-lucide="arrow-down" class="relative w-4 h-4 text-gold-300 transition-transform duration-300 group-hover:translate-y-1"></i>
                 </a>
                 
-                <a href="#register" class="group relative inline-flex items-center gap-3 px-8 py-3 overflow-hidden rounded-sm bg-gold-500/20 border border-gold-400 transition-all duration-300 hover:bg-gold-500/30 hover:border-gold-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)]">
+                <a href="#register" class="group relative inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-8 py-2 sm:py-3 overflow-hidden rounded-sm bg-gold-500/20 border border-gold-400 transition-all duration-300 hover:bg-gold-500/30 hover:border-gold-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)]">
                     <!-- Shimmer Effect -->
                     <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-gold-300/20 to-transparent group-hover:translate-x-full transition-transform duration-700"></div>
                     
-                    <span class="relative font-header text-xs tracking-[0.3em] text-gold-200 group-hover:text-gold-100 uppercase font-semibold">Register Now</span>
+                    <span class="relative font-header text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] text-gold-200 group-hover:text-gold-100 uppercase font-semibold">Register Now</span>
                     <i data-lucide="ticket" class="relative w-4 h-4 text-gold-300 transition-transform duration-300 group-hover:scale-110"></i>
                 </a>
             </div>
@@ -856,12 +978,12 @@
     </header>
 
     <!-- Sacred Geometry Scroll Reassembly -->
-    <section id="geometry" class="relative h-[500vh] bg-void z-20">
+    <section id="geometry" class="relative h-[300vh] md:h-[500vh] bg-void z-20">
         <div class="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
             
-            <div id="geo-title" class="absolute top-10 text-center z-10 mix-blend-difference pointer-events-none bg-void/30 backdrop-blur-[2px] p-4 rounded-xl transition-opacity duration-500">
-                <h2 class="font-header text-3xl md:text-5xl text-gold-300 mb-2 tracking-widest">ABOUT</h2>
-                <p class="font-body text-gold-100/60 text-sm tracking-[0.2em] uppercase">Dissolve and Coagulate</p>
+            <div id="geo-title" class="absolute top-6 md:top-10 text-center z-10 mix-blend-difference pointer-events-none bg-void/30 backdrop-blur-[2px] p-2 md:p-4 rounded-xl transition-opacity duration-500">
+                <h2 class="font-header text-2xl md:text-5xl text-gold-300 mb-1 md:mb-2 tracking-widest">ABOUT</h2>
+                <p class="font-body text-gold-100/60 text-xs md:text-sm tracking-[0.2em] uppercase">Dissolve and Coagulate</p>
             </div>
 
             <!-- 1. The Portal Wipe (Void Circle) -->
@@ -892,7 +1014,7 @@
             </div>
 
             <div id="svg-container" class="w-full h-full flex items-center justify-center relative transition-opacity duration-500">
-                <svg id="reassembly-svg" class="w-[65vmin] h-[65vmin] overflow-visible" viewBox="0 0 600 600">
+                <svg id="reassembly-svg" class="w-[85vmin] md:w-[65vmin] h-[85vmin] md:h-[65vmin] overflow-visible" viewBox="0 0 600 600">
                     <defs>
                         <filter id="glow">
                             <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
@@ -942,14 +1064,14 @@
                 </svg>
             </div>
             
-            <div class="absolute bottom-10 animate-pulse text-gold-500/50 text-xs tracking-widest">
+            <div class="absolute bottom-4 md:bottom-10 animate-pulse text-gold-500/50 text-[10px] md:text-xs tracking-widest">
                 SCROLL TO REFORM
             </div>
         </div>
     </section>
 
     <!-- PREMIUM SEPARATOR 1 -->
-    <div class="w-full flex items-center justify-center gap-4 py-12 z-20 relative opacity-80 pointer-events-none">
+    <div class="w-full flex items-center justify-center gap-4 py-6 md:py-12 z-20 relative opacity-80 pointer-events-none">
         <div class="h-px w-full max-w-[200px] md:max-w-xs bg-gradient-to-r from-transparent via-gold-500/50 to-gold-300"></div>
         <div class="relative flex items-center justify-center separator-pulse">
             <div class="absolute inset-0 bg-gold-500/10 blur-md rounded-full"></div>
@@ -963,25 +1085,30 @@
     </div>
 
     <!-- GUEST SPEAKERS SECTION -->
-    <section class="relative min-h-screen bg-charcoal z-10 py-20 px-4" id="symbols">
+    <section class="relative min-h-screen bg-charcoal z-10 py-12 md:py-20 px-3 md:px-4" id="symbols">
+        
+        <!-- Particle Canvas Background -->
+        <div class="absolute inset-0 z-0">
+            <canvas id="guestCanvas"></canvas>
+        </div>
         
         <!-- Background decorative elements -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-gold-500/5 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-20 right-10 w-80 h-80 bg-gold-300/5 rounded-full blur-3xl"></div>
+            <div class="absolute top-10 md:top-20 left-4 md:left-10 w-32 md:w-64 h-32 md:h-64 bg-gold-500/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 md:bottom-20 right-4 md:right-10 w-40 md:w-80 h-40 md:h-80 bg-gold-300/5 rounded-full blur-3xl"></div>
         </div>
 
         <!-- Section Header -->
-        <div class="text-center mb-16 relative z-10">
-            <h2 class="font-header text-4xl md:text-5xl text-gold-200 mb-4 tracking-wide guest-title opacity-0">Our Guest Speakers</h2>
-            <p class="text-gray-500 font-body text-lg md:text-xl tracking-widest uppercase opacity-0 guest-subtitle">Visionaries Defining Tomorrow</p>
-            <div class="w-24 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-6"></div>
+        <div class="text-center mb-8 md:mb-16 relative z-10">
+            <h2 class="font-header text-2xl sm:text-3xl md:text-5xl text-gold-200 mb-2 md:mb-4 tracking-wide guest-title opacity-0">Our Guest Speakers</h2>
+            <p class="text-gray-500 font-body text-sm sm:text-base md:text-xl tracking-widest uppercase opacity-0 guest-subtitle">Visionaries Defining Tomorrow</p>
+            <div class="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-4 md:mt-6"></div>
         </div>
 
         <!-- Guest Cards Grid -->
-        <div class="max-w-7xl mx-auto">
+        <div class="max-w-7xl mx-auto relative z-10">
             <!-- Top Row - 3 Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-8 mb-4 md:mb-8">
                 
                 <!-- Guest 1: STRIVER -->
                 <div class="guest-card group opacity-0" style="animation-delay: 0.1s;">
@@ -1051,8 +1178,8 @@
                 </div>
             </div>
 
-            <!-- Bottom Row - 2 Cards Centered -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <!-- Second Row - 3 Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-8 mb-4 md:mb-8">
                 
                 <!-- Guest 4: Arjun Pandey -->
                 <div class="guest-card group opacity-0" style="animation-delay: 0.4s;">
@@ -1095,12 +1222,79 @@
                         <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold-500/20 rounded-br-2xl"></div>
                     </div>
                 </div>
+
+                <!-- Guest 6: Prajakta Koli -->
+                <div class="guest-card group opacity-0" style="animation-delay: 0.6s;">
+                    <div class="relative bg-gradient-to-b from-charcoal to-void border border-gold-500/20 rounded-2xl p-6 overflow-hidden transition-all duration-500 hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold-500/30 group-hover:border-gold-300/60 transition-all duration-500">
+                            <img src="images_guest/Prajakta%20Koli.png" alt="Prajakta Koli" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-void/50 to-transparent"></div>
+                        </div>
+                        
+                        <div class="relative z-10 text-center">
+                            <h3 class="font-header text-gold-200 text-xl mb-2 tracking-wide group-hover:text-gold-100 transition-colors">Prajakta Koli</h3>
+                            <p class="text-gold-500 text-sm font-body tracking-wider mb-1">YouTuber & Actor</p>
+                            <p class="text-gray-500 text-xs font-body tracking-wide">Digital Creator</p>
+                        </div>
+                        
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold-500/20 rounded-tl-2xl"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold-500/20 rounded-br-2xl"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Row - 2 Cards Centered -->
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-8 max-w-3xl mx-auto mt-4 md:mt-8">
+                
+                <!-- Guest 7: Gaurav Chaudhary -->
+                <div class="guest-card group opacity-0" style="animation-delay: 0.7s;">
+                    <div class="relative bg-gradient-to-b from-charcoal to-void border border-gold-500/20 rounded-2xl p-6 overflow-hidden transition-all duration-500 hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold-500/30 group-hover:border-gold-300/60 transition-all duration-500">
+                            <img src="images_guest/Gaurav-Chaudhary%202.png" alt="Gaurav Chaudhary" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-void/50 to-transparent"></div>
+                        </div>
+                        
+                        <div class="relative z-10 text-center">
+                            <h3 class="font-header text-gold-200 text-xl mb-2 tracking-wide group-hover:text-gold-100 transition-colors">Gaurav Chaudhary</h3>
+                            <p class="text-gold-500 text-sm font-body tracking-wider mb-1">YouTuber</p>
+                            <p class="text-gray-500 text-xs font-body tracking-wide">Technical Guruji</p>
+                        </div>
+                        
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold-500/20 rounded-tl-2xl"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold-500/20 rounded-br-2xl"></div>
+                    </div>
+                </div>
+
+                <!-- Guest 8: Aakash Gupta -->
+                <div class="guest-card group opacity-0" style="animation-delay: 0.8s;">
+                    <div class="relative bg-gradient-to-b from-charcoal to-void border border-gold-500/20 rounded-2xl p-6 overflow-hidden transition-all duration-500 hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold-500/30 group-hover:border-gold-300/60 transition-all duration-500">
+                            <img src="images_guest/Aakash%20Gupta.png" alt="Aakash Gupta" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-void/50 to-transparent"></div>
+                        </div>
+                        
+                        <div class="relative z-10 text-center">
+                            <h3 class="font-header text-gold-200 text-xl mb-2 tracking-wide group-hover:text-gold-100 transition-colors">Aakash Gupta</h3>
+                            <p class="text-gold-500 text-sm font-body tracking-wider mb-1">Standup Comedian</p>
+                            <p class="text-gray-500 text-xs font-body tracking-wide">Comedy & Entertainment</p>
+                        </div>
+                        
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold-500/20 rounded-tl-2xl"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold-500/20 rounded-br-2xl"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- PREMIUM SEPARATOR 2 -->
-    <div class="w-full flex items-center justify-center gap-4 py-12 z-20 relative opacity-80 pointer-events-none bg-void/50 backdrop-blur-sm -mt-24 mb-12">
+    <div class="w-full flex items-center justify-center gap-4 py-8 md:py-12 z-20 relative opacity-80 pointer-events-none bg-void/50 backdrop-blur-sm -mt-8 md:-mt-24 mb-8 md:mb-12">
         <div class="h-px w-full max-w-[200px] md:max-w-xs bg-gradient-to-r from-transparent via-gold-500/50 to-gold-300"></div>
         <div class="relative flex items-center justify-center separator-pulse">
             <div class="absolute inset-0 bg-gold-500/10 blur-md rounded-full"></div>
@@ -2039,6 +2233,8 @@
         const spiralSvg = document.getElementById('spiral-svg');
         const canvas = document.getElementById('alchemyCanvas');
         const ctx = canvas ? canvas.getContext('2d') : null;
+        const guestCanvas = document.getElementById('guestCanvas');
+        const guestCtx = guestCanvas ? guestCanvas.getContext('2d') : null;
         const textRing = document.getElementById('text-ring');
         const navToggleBtn = document.getElementById('nav-toggle');
         const mainNav = document.getElementById('main-nav');
@@ -2046,6 +2242,7 @@
         
         // 2. GLOBAL VARIABLES
         let width, height;
+        let guestWidth, guestHeight;
         let itemSpacingY = 800; 
         const ITEM_ANGLE_STEP = 180; 
         const SPIRAL_RADIUS_BASE = 0.30; 
@@ -2054,8 +2251,12 @@
         const charElements = [];
         let particles = [];
         let sparkles = [];
+        let guestParticles = [];
+        let guestSparkles = [];
         const particleCount = 200;
+        const guestParticleCount = 150;
         const mouse = { x: null, y: null, radius: 100 };
+        const guestMouse = { x: null, y: null, radius: 120 };
         // Removed references to leadEl/goldEl since those elements are removed
         let isNavOpen = false;
 
@@ -2183,6 +2384,14 @@
                     height = canvas.height = window.innerHeight;
                 }
             }
+            if(guestCanvas) {
+                guestWidth = guestCanvas.width = window.innerWidth;
+                if (symbolSection) {
+                    guestHeight = guestCanvas.height = Math.max(window.innerHeight, symbolSection.offsetHeight);
+                } else {
+                    guestHeight = guestCanvas.height = window.innerHeight;
+                }
+            }
             itemSpacingY = window.innerHeight * 0.65;
             createSpiralPath();
             initSacredText();
@@ -2279,6 +2488,132 @@
             }
             for (let i = sparkles.length - 1; i >= 0; i--) {
                 sparkles[i].update(); sparkles[i].draw(); if (sparkles[i].life <= 0) sparkles.splice(i, 1);
+            }
+        }
+
+        // Guest Section Particle System
+        class GuestSparkle {
+            constructor(x, y, isMouse = false) {
+                this.x = x + (Math.random() - 0.5) * 20;
+                this.y = y + (Math.random() - 0.5) * 20;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+                this.size = Math.random() * 2.5 + 1;
+                this.life = isMouse ? 40 : 60;
+                this.maxLife = this.life;
+            }
+            update() { this.x += this.vx; this.y += this.vy; this.life--; }
+            draw() {
+                if(!guestCtx) return;
+                const alpha = this.life / this.maxLife;
+                guestCtx.beginPath();
+                guestCtx.arc(this.x, this.y, this.size * alpha, 0, Math.PI * 2);
+                guestCtx.fillStyle = `rgba(212, 175, 55, ${alpha * 0.8})`;
+                guestCtx.shadowBlur = 8;
+                guestCtx.shadowColor = '#D4AF37';
+                guestCtx.fill();
+                guestCtx.shadowBlur = 0;
+            }
+        }
+
+        class GuestParticle {
+            constructor() {
+                this.x = Math.random() * (guestWidth || window.innerWidth);
+                this.y = Math.random() * (guestHeight || window.innerHeight);
+                this.size = Math.random() * 2 + 0.5;
+                this.baseSpeedX = (Math.random() - 0.5) * 0.3;
+                this.baseSpeedY = (Math.random() - 0.5) * 0.3;
+                this.vx = this.baseSpeedX;
+                this.vy = this.baseSpeedY;
+                this.isGold = Math.random() < 0.4;
+                this.colorGold = `rgba(212, 175, 55, ${Math.random() * 0.5 + 0.3})`;
+                this.colorLead = `rgba(100, 100, 100, ${Math.random() * 0.3 + 0.1})`;
+            }
+            update() {
+                // Mouse repulsion
+                if (guestMouse.x !== null && guestMouse.y !== null) {
+                    const dx = this.x - guestMouse.x;
+                    const dy = this.y - guestMouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < guestMouse.radius) {
+                        const force = (guestMouse.radius - dist) / guestMouse.radius;
+                        const angle = Math.atan2(dy, dx);
+                        this.vx += Math.cos(angle) * force * 2;
+                        this.vy += Math.sin(angle) * force * 2;
+                        // Create sparkles on interaction
+                        if (this.isGold && Math.random() < 0.15) {
+                            guestSparkles.push(new GuestSparkle(this.x, this.y));
+                        }
+                    }
+                }
+                
+                // Apply velocity with damping
+                this.vx = this.vx * 0.98 + this.baseSpeedX * 0.02;
+                this.vy = this.vy * 0.98 + this.baseSpeedY * 0.02;
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Wrap around edges
+                const w = guestWidth || window.innerWidth;
+                const h = guestHeight || window.innerHeight;
+                if (this.x < 0) this.x = w;
+                if (this.x > w) this.x = 0;
+                if (this.y < 0) this.y = h;
+                if (this.y > h) this.y = 0;
+            }
+            draw() {
+                if(!guestCtx) return;
+                guestCtx.beginPath();
+                guestCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                if (this.isGold) {
+                    guestCtx.fillStyle = this.colorGold;
+                    guestCtx.shadowBlur = 6;
+                    guestCtx.shadowColor = '#D4AF37';
+                } else {
+                    guestCtx.fillStyle = this.colorLead;
+                    guestCtx.shadowBlur = 0;
+                }
+                guestCtx.fill();
+                guestCtx.shadowBlur = 0;
+            }
+        }
+
+        function initGuestParticles() { 
+            guestParticles = []; 
+            for (let i = 0; i < guestParticleCount; i++) guestParticles.push(new GuestParticle()); 
+        }
+        
+        function animateGuest() {
+            if(!guestCtx) return;
+            requestAnimationFrame(animateGuest);
+            guestCtx.clearRect(0, 0, guestWidth || window.innerWidth, guestHeight || window.innerHeight);
+            guestCtx.lineWidth = 0.3;
+            
+            // Draw connections between gold particles
+            for (let i = 0; i < guestParticles.length; i++) {
+                for (let j = i + 1; j < guestParticles.length; j++) {
+                    if (guestParticles[i].isGold && guestParticles[j].isGold) {
+                        const dx = guestParticles[i].x - guestParticles[j].x;
+                        const dy = guestParticles[i].y - guestParticles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 100) {
+                            guestCtx.beginPath();
+                            guestCtx.strokeStyle = `rgba(212, 175, 55, ${0.15 * (1 - distance/100)})`;
+                            guestCtx.moveTo(guestParticles[i].x, guestParticles[i].y);
+                            guestCtx.lineTo(guestParticles[j].x, guestParticles[j].y);
+                            guestCtx.stroke();
+                        }
+                    }
+                }
+                guestParticles[i].update();
+                guestParticles[i].draw();
+            }
+            
+            // Draw and update sparkles
+            for (let i = guestSparkles.length - 1; i >= 0; i--) {
+                guestSparkles[i].update();
+                guestSparkles[i].draw();
+                if (guestSparkles[i].life <= 0) guestSparkles.splice(i, 1);
             }
         }
 
@@ -2502,6 +2837,20 @@
             });
         }
 
+        // Guest Canvas Mouse Tracking
+        if(guestCanvas && symbolSection) {
+            symbolSection.addEventListener('mousemove', (e) => {
+                const rect = symbolSection.getBoundingClientRect();
+                guestMouse.x = e.clientX - rect.left;
+                guestMouse.y = e.clientY - rect.top;
+                if (Math.random() < 0.25) guestSparkles.push(new GuestSparkle(guestMouse.x, guestMouse.y, true));
+            });
+            symbolSection.addEventListener('mouseleave', () => {
+                guestMouse.x = null;
+                guestMouse.y = null;
+            });
+        }
+
         // --- RANDOM GLOW EFFECT FOR GEOMETRY ---
         function initRandomGlows() {
             const geometryLines = document.querySelectorAll('#reassembly-svg path, #reassembly-svg line, #reassembly-svg circle, #reassembly-svg rect, #reassembly-svg polygon');
@@ -2547,6 +2896,10 @@
         if(ctx) {
             initParticles();
             animate();
+        }
+        if(guestCtx) {
+            initGuestParticles();
+            animateGuest();
         }
         initRandomGlows();
         
