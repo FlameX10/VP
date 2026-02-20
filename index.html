@@ -429,6 +429,49 @@
             transform: translateY(0);
         }
 
+        /* Guest Speaker Cards */
+        .guest-title, .guest-subtitle {
+            animation: fadeSlideUp 0.8s ease-out forwards;
+        }
+        .guest-subtitle {
+            animation-delay: 0.2s;
+        }
+        
+        .guest-card {
+            animation: fadeSlideUp 0.8s ease-out forwards;
+        }
+        
+        .guest-card.animate-in {
+            animation: guestCardReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes guestCardReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        /* Guest card hover glow ring */
+        .guest-card:hover img {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+        }
+
         /* PORTAL WIPE STYLES */
         #geo-portal {
             position: absolute;
@@ -919,78 +962,139 @@
         <div class="h-px w-full max-w-[200px] md:max-w-xs bg-gradient-to-l from-transparent via-gold-500/50 to-gold-300"></div>
     </div>
 
-    <!-- NEW SECTION: The Prima Materia (3D Spiral) -->
-    <section class="relative h-[1000vh] bg-charcoal z-10" id="symbols">
-        <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center scene-3d perspective-3d">
-            
-            <div class="absolute top-12 text-center z-20 pointer-events-none">
-                <h2 class="font-header text-5xl text-gold-200 mb-2 tracking-wide">Our Guest Speakers</h2>
-                <p class="text-gray-500 font-body text-xl tracking-widest uppercase opacity-60">The Ingredients of the Cosmos</p>
+    <!-- GUEST SPEAKERS SECTION -->
+    <section class="relative min-h-screen bg-charcoal z-10 py-20 px-4" id="symbols">
+        
+        <!-- Background decorative elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-gold-500/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-80 h-80 bg-gold-300/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <!-- Section Header -->
+        <div class="text-center mb-16 relative z-10">
+            <h2 class="font-header text-4xl md:text-5xl text-gold-200 mb-4 tracking-wide guest-title opacity-0">Our Guest Speakers</h2>
+            <p class="text-gray-500 font-body text-lg md:text-xl tracking-widest uppercase opacity-0 guest-subtitle">Visionaries Defining Tomorrow</p>
+            <div class="w-24 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-6"></div>
+        </div>
+
+        <!-- Guest Cards Grid -->
+        <div class="max-w-7xl mx-auto">
+            <!-- Top Row - 3 Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                
+                <!-- Guest 1: STRIVER -->
+                <div class="guest-card group opacity-0" style="animation-delay: 0.1s;">
+                    <div class="relative bg-gradient-to-b from-charcoal to-void border border-gold-500/20 rounded-2xl p-6 overflow-hidden transition-all duration-500 hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                        <!-- Glow effect -->
+                        <div class="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <!-- Image Container -->
+                        <div class="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold-500/30 group-hover:border-gold-300/60 transition-all duration-500">
+                            <img src="images_guest/Striver.png" alt="STRIVER" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-void/50 to-transparent"></div>
+                        </div>
+                        
+                        <!-- Text Content -->
+                        <div class="relative z-10 text-center">
+                            <h3 class="font-header text-gold-200 text-xl mb-2 tracking-wide group-hover:text-gold-100 transition-colors">STRIVER</h3>
+                            <p class="text-gold-500 text-sm font-body tracking-wider mb-1">SWE-III @ Google</p>
+                            <p class="text-gray-500 text-xs font-body tracking-wide">Founder, TakeUforward</p>
+                        </div>
+                        
+                        <!-- Corner decorations -->
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold-500/20 rounded-tl-2xl"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold-500/20 rounded-br-2xl"></div>
+                    </div>
+                </div>
+
+                <!-- Guest 2: Sanjay Arora -->
+                <div class="guest-card group opacity-0" style="animation-delay: 0.2s;">
+                    <div class="relative bg-gradient-to-b from-charcoal to-void border border-gold-500/20 rounded-2xl p-6 overflow-hidden transition-all duration-500 hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold-500/30 group-hover:border-gold-300/60 transition-all duration-500">
+                            <img src="images_guest/Sanjay%20Arora.png" alt="Sanjay Arora" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-void/50 to-transparent"></div>
+                        </div>
+                        
+                        <div class="relative z-10 text-center">
+                            <h3 class="font-header text-gold-200 text-xl mb-2 tracking-wide group-hover:text-gold-100 transition-colors">Sanjay Arora</h3>
+                            <p class="text-gold-500 text-sm font-body tracking-wider mb-1">Founder</p>
+                            <p class="text-gray-500 text-xs font-body tracking-wide">Shell Ad Inc</p>
+                        </div>
+                        
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold-500/20 rounded-tl-2xl"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold-500/20 rounded-br-2xl"></div>
+                    </div>
+                </div>
+
+                <!-- Guest 3: Vinayak Pai -->
+                <div class="guest-card group opacity-0" style="animation-delay: 0.3s;">
+                    <div class="relative bg-gradient-to-b from-charcoal to-void border border-gold-500/20 rounded-2xl p-6 overflow-hidden transition-all duration-500 hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold-500/30 group-hover:border-gold-300/60 transition-all duration-500">
+                            <img src="images_guest/Vinayak%20Pai.png" alt="Vinayak Pai" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-void/50 to-transparent"></div>
+                        </div>
+                        
+                        <div class="relative z-10 text-center">
+                            <h3 class="font-header text-gold-200 text-xl mb-2 tracking-wide group-hover:text-gold-100 transition-colors">Vinayak Pai</h3>
+                            <p class="text-gold-500 text-sm font-body tracking-wider mb-1">Managing Director & CEO</p>
+                            <p class="text-gray-500 text-xs font-body tracking-wide">Tata Projects</p>
+                        </div>
+                        
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold-500/20 rounded-tl-2xl"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold-500/20 rounded-br-2xl"></div>
+                    </div>
+                </div>
             </div>
 
-            <!-- 3D Helix Group -->
-            <div id="helix-group" class="helix-group flex items-center justify-center">
-                <svg id="spiral-svg" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0; opacity: 0.3;"></svg>
-
-                <!-- Card 1: Lapis (Index 0) -->
-                <div class="symbol-card spiral-item group">
-                    <div class="quote-container quote-left">
-                        <p class="quote-text">"The Stone that is not a stone, a precious thing that has no value."</p>
-                        <span class="quote-sub">Rosarium Philosophorum</span>
+            <!-- Bottom Row - 2 Cards Centered -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                
+                <!-- Guest 4: Arjun Pandey -->
+                <div class="guest-card group opacity-0" style="animation-delay: 0.4s;">
+                    <div class="relative bg-gradient-to-b from-charcoal to-void border border-gold-500/20 rounded-2xl p-6 overflow-hidden transition-all duration-500 hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold-500/30 group-hover:border-gold-300/60 transition-all duration-500">
+                            <img src="images_guest/arjun_pandey-removebg-preview%20(1).png" alt="Arjun Pandey" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-void/50 to-transparent"></div>
+                        </div>
+                        
+                        <div class="relative z-10 text-center">
+                            <h3 class="font-header text-gold-200 text-xl mb-2 tracking-wide group-hover:text-gold-100 transition-colors">Arjun Pandey</h3>
+                            <p class="text-gold-500 text-sm font-body tracking-wider mb-1">Content Creator</p>
+                            <p class="text-gray-500 text-xs font-body tracking-wide">Digital Influencer</p>
+                        </div>
+                        
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold-500/20 rounded-tl-2xl"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold-500/20 rounded-br-2xl"></div>
                     </div>
-
-                    <div class="h-32 w-32 mb-4 relative flex items-center justify-center">
-                        <div class="alchemy-orb orb-lapis"></div>
-                    </div>
-                    <h3 class="font-header text-gold-300 text-lg mb-1 tracking-widest">Lapis</h3>
-                    <p class="text-gray-400 text-xs text-center px-8 leading-relaxed">Immortality & Perfection</p>
                 </div>
 
-                <!-- Card 2: Mercury (Index 1) -->
-                <div class="symbol-card spiral-item group">
-                    <div class="quote-container quote-right">
-                        <p class="quote-text">"It is the father of all metals, the fluid spirit of life."</p>
-                        <span class="quote-sub">The Emerald Tablet</span>
+                <!-- Guest 5: Siddhant Joshi -->
+                <div class="guest-card group opacity-0" style="animation-delay: 0.5s;">
+                    <div class="relative bg-gradient-to-b from-charcoal to-void border border-gold-500/20 rounded-2xl p-6 overflow-hidden transition-all duration-500 hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold-500/30 group-hover:border-gold-300/60 transition-all duration-500">
+                            <img src="images_guest/siddhant%20joshi.png" alt="Siddhant Joshi" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-void/50 to-transparent"></div>
+                        </div>
+                        
+                        <div class="relative z-10 text-center">
+                            <h3 class="font-header text-gold-200 text-xl mb-2 tracking-wide group-hover:text-gold-100 transition-colors">Siddhant Joshi</h3>
+                            <p class="text-gold-500 text-sm font-body tracking-wider mb-1">Gaming Creator</p>
+                            <p class="text-gray-500 text-xs font-body tracking-wide">Content & Gaming</p>
+                        </div>
+                        
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold-500/20 rounded-tl-2xl"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold-500/20 rounded-br-2xl"></div>
                     </div>
-
-                    <div class="h-32 w-32 mb-4 flex items-center justify-center">
-                         <div class="alchemy-orb orb-mercury"></div>
-                    </div>
-                    <h3 class="font-header text-gold-300 text-lg mb-1 tracking-widest">Mercury</h3>
-                    <p class="text-gray-400 text-xs text-center px-8 leading-relaxed">Fluid Spirit & Mind</p>
                 </div>
-
-                <!-- Card 3: Sulphur (Index 2) -->
-                <div class="symbol-card spiral-item group">
-                    <div class="quote-container quote-left">
-                        <p class="quote-text">"The internal fire that activates and coagulates the spirit."</p>
-                        <span class="quote-sub">Paracelsus</span>
-                    </div>
-
-                    <div class="h-32 w-32 mb-4 flex items-center justify-center">
-                        <div class="alchemy-orb orb-sulphur"></div>
-                    </div>
-                    <h3 class="font-header text-gold-300 text-lg mb-1 tracking-widest">Sulphur</h3>
-                    <p class="text-gray-400 text-xs text-center px-8 leading-relaxed">Active Soul & Fire</p>
-                </div>
-
-                <!-- Card 4: Salt (Index 3) -->
-                <div class="symbol-card spiral-item group">
-                    <div class="quote-container quote-right">
-                        <p class="quote-text">"The key to the lock, the beginning and the end of the work."</p>
-                        <span class="quote-sub">Hermetic Corpus</span>
-                    </div>
-
-                    <div class="h-32 w-32 mb-4 flex items-center justify-center">
-                        <div class="alchemy-orb orb-salt"></div>
-                    </div>
-                    <h3 class="font-header text-gold-300 text-lg mb-1 tracking-widest">Salt</h3>
-                    <p class="text-gray-400 text-xs text-center px-8 leading-relaxed">Body & Matter</p>
-                </div>
-            </div>
-            
-             <div class="absolute bottom-10 animate-pulse text-gold-500/50 text-xs tracking-widest z-20">
-                SCROLL TO ASCEND
             </div>
         </div>
     </section>
@@ -2361,6 +2465,33 @@
         }, { threshold: 0.2 });
 
         document.querySelectorAll('.sponsor-row').forEach(row => sponsorObserver.observe(row));
+
+        // NEW: Guest Cards Animation Observer
+        const guestCardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    guestCardObserver.unobserve(entry.target);
+                }
+            })
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        document.querySelectorAll('.guest-card').forEach(card => guestCardObserver.observe(card));
+
+        // Guest section title/subtitle animation
+        const guestTitleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    guestTitleObserver.unobserve(entry.target);
+                }
+            })
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.guest-title, .guest-subtitle').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            guestTitleObserver.observe(el);
+        });
 
         if(canvas) {
             window.addEventListener('mousemove', (e) => {
