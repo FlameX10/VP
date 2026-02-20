@@ -832,9 +832,9 @@
 
     <!-- Atmospheric Smoke Background (Refined) -->
     <div class="smoke-container">
-        <div class="absolute top-0 left-0 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
-        <div class="absolute bottom-0 right-0 w-[800px] h-[800px] bg-purple-900/10 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3 animate-pulse-slow"></div>
-        <div class="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-gold-900/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute top-0 left-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-blue-900/10 rounded-full blur-[80px] md:blur-[120px] -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-purple-900/10 rounded-full blur-[80px] md:blur-[120px] translate-x-1/3 translate-y-1/3 animate-pulse-slow"></div>
+        <div class="absolute top-1/2 left-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-gold-900/5 rounded-full blur-[60px] md:blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
     </div>
 
     <!-- 1. UPDATED TITLE (Top Left) -->
@@ -1311,74 +1311,74 @@
     <section class="relative h-screen w-full bg-void z-20 flex flex-col overflow-hidden" id="archive">
         
         <!-- Static Header -->
-        <div class="relative z-10 w-full text-center py-8 bg-void/90 backdrop-blur-sm shrink-0">
-            <h2 class="font-header text-3xl md:text-5xl text-gold-200 mb-2 tracking-widest">THE ARCHIVE</h2>
-            <p class="text-gold-100/50 text-xs md:text-sm tracking-[0.3em] uppercase">Visual Records of the Great Work</p>
+        <div class="relative z-10 w-full text-center py-4 md:py-8 bg-void/90 backdrop-blur-sm shrink-0">
+            <h2 class="font-header text-2xl md:text-5xl text-gold-200 mb-1 md:mb-2 tracking-wide md:tracking-widest">THE ARCHIVE</h2>
+            <p class="text-gold-100/50 text-[10px] md:text-sm tracking-[0.15em] md:tracking-[0.3em] uppercase">Visual Records of the Great Work</p>
         </div>
 
         <!-- Scroll Container with Gradients -->
-        <div class="flex-1 w-full max-w-6xl mx-auto flex gap-4 md:gap-10 px-4 overflow-hidden relative">
+        <div class="flex-1 w-full max-w-6xl mx-auto flex gap-2 md:gap-10 px-2 md:px-4 overflow-hidden relative">
             <!-- Fade Overlay Top -->
-            <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-void to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute top-0 left-0 w-full h-16 md:h-32 bg-gradient-to-b from-void to-transparent z-10 pointer-events-none"></div>
             <!-- Fade Overlay Bottom -->
-            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-void to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-full h-16 md:h-32 bg-gradient-to-t from-void to-transparent z-10 pointer-events-none"></div>
 
             <!-- Col 1: Scroll Up -->
             <div class="w-1/2 relative h-full">
-                <div class="flex flex-col gap-6 md:gap-10 animate-marquee-up">
+                <div class="flex flex-col gap-3 md:gap-10 animate-marquee-up">
                     <!-- Set A -->
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/3163534/3163534-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Nigredo</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Macrocosm</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/6561173/6561173-sd_360_640_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Sublimation</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Aurum Potabile</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/3163534/3163534-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Nigredo</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Macrocosm</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/6561173/6561173-sd_360_640_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Sublimation</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Aurum Potabile</h3></div></div>
                     <!-- Extra Items for Spacing -->
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Eclipse</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1532798442725-41036acc7489?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/853800/853800-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Flux</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Eclipse</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1532798442725-41036acc7489?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/853800/853800-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Flux</h3></div></div>
                     
                     <!-- Set B (Duplicate for Loop) -->
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/3163534/3163534-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Nigredo</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Macrocosm</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/6561173/6561173-sd_360_640_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Sublimation</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Aurum Potabile</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/3163534/3163534-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Nigredo</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Macrocosm</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/6561173/6561173-sd_360_640_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Sublimation</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Aurum Potabile</h3></div></div>
                     <!-- Extra Items Duplicate -->
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Eclipse</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1532798442725-41036acc7489?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/853800/853800-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Flux</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Eclipse</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1532798442725-41036acc7489?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/853800/853800-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Flux</h3></div></div>
                 </div>
             </div>
 
             <!-- Col 2: Scroll Down -->
             <div class="w-1/2 relative h-full">
-                <div class="flex flex-col gap-6 md:gap-10 animate-marquee-down">
+                <div class="flex flex-col gap-3 md:gap-10 animate-marquee-down">
                     <!-- Set A -->
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Liber Mutus</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2022395/2022395-sd_640_360_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Ignis Ardens</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1601379327896-d25032df7377?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Geometry</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1515405295579-ba7b45498955?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/7565436/7565436-sd_540_960_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">The Great Work</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Liber Mutus</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2022395/2022395-sd_640_360_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Ignis Ardens</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1601379327896-d25032df7377?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Geometry</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1515405295579-ba7b45498955?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/7565436/7565436-sd_540_960_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">The Great Work</h3></div></div>
                     <!-- Extra Items for Spacing -->
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Prisma</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2802069/2802069-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Ether</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Prisma</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2802069/2802069-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Ether</h3></div></div>
 
                     <!-- Set B (Duplicate for Loop) -->
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Liber Mutus</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2022395/2022395-sd_640_360_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Ignis Ardens</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1601379327896-d25032df7377?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Geometry</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1515405295579-ba7b45498955?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/7565436/7565436-sd_540_960_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">The Great Work</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Liber Mutus</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2022395/2022395-sd_640_360_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Ignis Ardens</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1601379327896-d25032df7377?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Geometry</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1515405295579-ba7b45498955?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/7565436/7565436-sd_540_960_30fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">The Great Work</h3></div></div>
                     <!-- Extra Items Duplicate -->
-                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Prisma</h3></div></div>
-                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2802069/2802069-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-4"><h3 class="font-header text-gold-300 text-xl">Ether</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800&auto=format&fit=crop" class="gallery-media"><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Prisma</h3></div></div>
+                    <div class="gallery-item group cursor-pointer aspect-video"><video class="gallery-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=600&auto=format&fit=crop"><source src="https://videos.pexels.com/video-files/2802069/2802069-sd_640_360_25fps.mp4" type="video/mp4"></video><div class="gallery-overlay p-2 md:p-4"><h3 class="font-header text-gold-300 text-sm md:text-xl">Ether</h3></div></div>
                 </div>
             </div>
         </div>
         
         <!-- View More Button Footer -->
-        <div class="relative z-20 w-full flex justify-center py-8 bg-gradient-to-t from-void via-void/95 to-transparent shrink-0">
-             <a href="#" class="group relative inline-flex items-center justify-center px-12 py-4 overflow-hidden font-header font-medium tracking-[0.3em] text-gold-300 transition-all duration-300 bg-black/40 border border-gold-500/30 rounded-sm hover:border-gold-400 hover:shadow-[0_0_30px_rgba(212,175,55,0.2)] backdrop-blur-md">
+        <div class="relative z-20 w-full flex justify-center py-4 md:py-8 bg-gradient-to-t from-void via-void/95 to-transparent shrink-0">
+             <a href="#" class="group relative inline-flex items-center justify-center px-6 md:px-12 py-3 md:py-4 overflow-hidden font-header font-medium tracking-[0.15em] md:tracking-[0.3em] text-gold-300 transition-all duration-300 bg-black/40 border border-gold-500/30 rounded-sm hover:border-gold-400 hover:shadow-[0_0_30px_rgba(212,175,55,0.2)] backdrop-blur-md">
                 <!-- Glare Effect -->
                 <div class="absolute inset-0 w-0 bg-gold-400/10 transition-all duration-[400ms] ease-out group-hover:w-full"></div>
                 <!-- Button Text -->
-                <span class="relative flex items-center gap-4 text-xs md:text-sm uppercase group-hover:text-gold-100 transition-colors">
+                <span class="relative flex items-center gap-2 md:gap-4 text-[10px] md:text-sm uppercase group-hover:text-gold-100 transition-colors">
                     View Full Gallery
-                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5"></i>
+                    <i data-lucide="arrow-right" class="w-3 h-3 md:w-4 md:h-4 transition-transform duration-500 group-hover:translate-x-1.5"></i>
                 </span>
             </a>
         </div>
@@ -1391,26 +1391,26 @@
             <canvas id="alchemyCanvas"></canvas>
         </div>
         
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col gap-12 py-20">
-            <div class="text-center mb-6">
-                <h2 class="font-header tracking-[0.3em] mb-4 text-sm font-semibold text-gold-500 uppercase">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 flex flex-col gap-8 md:gap-12 py-12 md:py-20">
+            <div class="text-center mb-4 md:mb-6">
+                <h2 class="font-header tracking-[0.15em] md:tracking-[0.3em] mb-2 md:mb-4 text-xs md:text-sm font-semibold text-gold-500 uppercase">
                     OUR PREVIOUS SPONSORS
                 </h2>
             </div>
 
             <!-- 3D Sponsor Stack Carousel -->
-            <div class="scene relative w-full max-w-6xl mx-auto h-80 flex items-center justify-center" style="perspective: 1400px;">
+            <div class="scene relative w-full max-w-6xl mx-auto h-48 md:h-80 flex items-center justify-center" style="perspective: 1400px;">
                 <div id="sponsor-stack" class="relative w-full h-full"></div>
             </div>
 
             <!-- View All Sponsors Button -->
-            <div class="text-center mt-8">
-                <a href="#sponsors" class="group relative inline-flex items-center gap-3 px-8 py-3 overflow-hidden rounded-sm bg-void border border-gold-500/50 transition-all duration-300 hover:border-gold-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+            <div class="text-center mt-4 md:mt-8">
+                <a href="#sponsors" class="group relative inline-flex items-center gap-2 md:gap-3 px-5 md:px-8 py-2 md:py-3 overflow-hidden rounded-sm bg-void border border-gold-500/50 transition-all duration-300 hover:border-gold-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
                     <!-- Hover Fill -->
                     <div class="absolute inset-0 w-0 bg-gold-500/10 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
                     
-                    <span class="relative font-header text-xs tracking-[0.3em] text-gold-300 group-hover:text-gold-200 uppercase">View All Sponsors</span>
-                    <i data-lucide="arrow-right" class="relative w-4 h-4 text-gold-300"></i>
+                    <span class="relative font-header text-[10px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] text-gold-300 group-hover:text-gold-200 uppercase">View All Sponsors</span>
+                    <i data-lucide="arrow-right" class="relative w-3 h-3 md:w-4 md:h-4 text-gold-300"></i>
                 </a>
             </div>
         </div>
@@ -1510,6 +1510,7 @@
             }
             
             function render() {
+                const isMobile = window.innerWidth < 768;
                 cards.forEach((card, i) => {
                     const pos = positions[i];
                     const abs = Math.abs(pos);
@@ -1523,9 +1524,9 @@
                         scale = Math.max(0.5, scaleFactor);
                     }
                     
-                    // Calculate dimensions - RECTANGULAR SHAPE
-                    const baseWidth = 320;
-                    const baseHeight = 220;
+                    // Calculate dimensions - RECTANGULAR SHAPE (responsive)
+                    const baseWidth = isMobile ? 180 : 320;
+                    const baseHeight = isMobile ? 120 : 220;
                     const width = baseWidth * scale;
                     const height = baseHeight * scale;
                     
@@ -1533,13 +1534,15 @@
                     card.style.height = height + 'px';
                     
                     // Only show cards within range - REDUCED for fewer visible cards
-                    if (abs < 4) {
+                    const visibleRange = isMobile ? 3 : 4;
+                    if (abs < visibleRange) {
                         card.style.display = 'flex';
                         
-                        // Smoother spacing and depth - INCREASED spacing
-                        const xOffset = pos * 200 * (1 - abs * 0.01);
-                        const zOffset = -abs * 180;
-                        const yOffset = abs * 12;
+                        // Smoother spacing and depth - INCREASED spacing (responsive)
+                        const spacing = isMobile ? 120 : 200;
+                        const xOffset = pos * spacing * (1 - abs * 0.01);
+                        const zOffset = -abs * (isMobile ? 100 : 180);
+                        const yOffset = abs * (isMobile ? 8 : 12);
                         
                         // Transform from center point of the card
                         card.style.transform = `
@@ -1589,9 +1592,9 @@
     </script>
 
     <!-- Register Section -->
-    <section id="register" class="py-16 md:py-24 px-6 relative z-10 overflow-hidden">
+    <section id="register" class="py-12 md:py-24 px-4 md:px-6 relative z-10 overflow-hidden">
         <!-- Background Glow Effects -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-gold-500/5 rounded-full blur-[80px] md:blur-[150px] pointer-events-none"></div>
         
         <div class="max-w-4xl mx-auto relative">
             <!-- Title -->
@@ -1605,25 +1608,25 @@
             </div>
 
             <!-- Register Card -->
-            <div class="relative border border-gold-700/30 rounded-2xl p-8 md:p-12 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-500 group">
+            <div class="relative border border-gold-700/30 rounded-2xl p-5 sm:p-8 md:p-12 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-500 group">
                 <!-- Corner Decorations -->
-                <div class="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-gold-500/30 rounded-tl-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
-                <div class="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-gold-500/30 rounded-tr-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
-                <div class="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-gold-500/30 rounded-bl-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
-                <div class="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-gold-500/30 rounded-br-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
+                <div class="absolute top-0 left-0 w-8 md:w-16 h-8 md:h-16 border-t-2 border-l-2 border-gold-500/30 rounded-tl-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
+                <div class="absolute top-0 right-0 w-8 md:w-16 h-8 md:h-16 border-t-2 border-r-2 border-gold-500/30 rounded-tr-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
+                <div class="absolute bottom-0 left-0 w-8 md:w-16 h-8 md:h-16 border-b-2 border-l-2 border-gold-500/30 rounded-bl-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
+                <div class="absolute bottom-0 right-0 w-8 md:w-16 h-8 md:h-16 border-b-2 border-r-2 border-gold-500/30 rounded-br-2xl transition-all duration-500 group-hover:border-gold-400/60"></div>
                 
                 <!-- Content -->
-                <div class="text-center mb-8">
-                    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold-500/10 border border-gold-500/30 mb-6 animate-pulse-slow">
+                <div class="text-center mb-6 md:mb-8">
+                    <div class="inline-flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-full bg-gold-500/10 border border-gold-500/30 mb-4 md:mb-6 animate-pulse-slow">
                         <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                         </svg>
                     </div>
-                    <h3 class="font-header text-2xl md:text-3xl text-gold-200 mb-3 tracking-wide">Get Your Pass</h3>
-                    <p class="text-gray-400 text-sm md:text-base mb-8">Join us on <span class="text-gold-400 font-semibold">1st & 2nd March 2026</span></p>
+                    <h3 class="font-header text-xl md:text-3xl text-gold-200 mb-2 md:mb-3 tracking-wide">Get Your Pass</h3>
+                    <p class="text-gray-400 text-xs md:text-base mb-6 md:mb-8">Join us on <span class="text-gold-400 font-semibold">1st & 2nd March 2026</span></p>
                     
                     <!-- Direct Register Button -->
-                    <a href="https://learner.vierp.in/events" target="_blank" class="group/btn relative inline-flex items-center gap-3 px-10 py-4 overflow-hidden rounded-lg bg-gradient-to-r from-gold-600 to-gold-500 transition-all duration-300 hover:from-gold-500 hover:to-gold-400 hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] transform hover:scale-105">
+                    <a href="https://learner.vierp.in/events" target="_blank" class="group/btn relative inline-flex items-center gap-2 md:gap-3 px-6 md:px-10 py-3 md:py-4 overflow-hidden rounded-lg bg-gradient-to-r from-gold-600 to-gold-500 transition-all duration-300 hover:from-gold-500 hover:to-gold-400 hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] transform hover:scale-105">
                         <!-- Shimmer -->
                         <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover/btn:translate-x-full transition-transform duration-700"></div>
                         
@@ -1834,86 +1837,86 @@
     </script>
 
     <!-- Social Media Section -->
-    <section id="social-media" class="py-16 md:py-24 px-6 relative z-10">
+    <section id="social-media" class="py-12 md:py-24 px-4 md:px-6 relative z-10">
         <div class="max-w-6xl mx-auto">
             <!-- Title -->
-            <h2 class="font-header text-3xl md:text-5xl text-center mb-12 md:mb-16 uppercase tracking-widest text-gold-300">
+            <h2 class="font-header text-2xl md:text-5xl text-center mb-8 md:mb-16 uppercase tracking-wide md:tracking-widest text-gold-300">
                 Social Media
             </h2>
 
             <!-- Testimonial Cards -->
-            <div class="grid md:grid-cols-2 gap-6 mb-16">
-                <div class="relative p-8 rounded-2xl border border-gold-700/30 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+            <div class="grid md:grid-cols-2 gap-4 md:gap-6 mb-10 md:mb-16">
+                <div class="relative p-4 md:p-8 rounded-2xl border border-gold-700/30 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
                     <!-- Quote Icon -->
-                    <div class="absolute top-6 left-6">
-                        <svg class="w-10 h-10 text-gold-500/50" viewBox="0 0 24 24" fill="currentColor">
+                    <div class="absolute top-3 left-3 md:top-6 md:left-6">
+                        <svg class="w-6 h-6 md:w-10 md:h-10 text-gold-500/50" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5 3.871 3.871 0 0 1-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5 3.871 3.871 0 0 1-2.748-1.179z"/>
                         </svg>
                     </div>
-                    <p class="text-gray-200 text-lg md:text-xl font-medium leading-relaxed pl-12">
+                    <p class="text-gray-200 text-sm md:text-xl font-medium leading-relaxed pl-8 md:pl-12">
                         It was very inspiring perspective on how drive of being better each day is the important
                     </p>
                 </div>
-                <div class="relative p-8 rounded-2xl border border-gold-700/30 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                <div class="relative p-4 md:p-8 rounded-2xl border border-gold-700/30 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
                     <!-- Quote Icon -->
-                    <div class="absolute top-6 left-6">
-                        <svg class="w-10 h-10 text-gold-500/50" viewBox="0 0 24 24" fill="currentColor">
+                    <div class="absolute top-3 left-3 md:top-6 md:left-6">
+                        <svg class="w-6 h-6 md:w-10 md:h-10 text-gold-500/50" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5 3.871 3.871 0 0 1-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5 3.871 3.871 0 0 1-2.748-1.179z"/>
                         </svg>
                     </div>
-                    <p class="text-gray-200 text-lg md:text-xl font-medium leading-relaxed pl-12">
+                    <p class="text-gray-200 text-sm md:text-xl font-medium leading-relaxed pl-8 md:pl-12">
                         Attended an incredible session at Vishwapreneur EDC VIIT today, Co-founder of JustDial!
                     </p>
                 </div>
             </div>
 
             <!-- Social Media Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                 <!-- YouTube -->
                 <div class="flex flex-col items-center">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
-                        <svg class="w-8 h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
+                    <div class="w-12 h-12 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-2 md:mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
+                        <svg class="w-5 h-5 md:w-8 md:h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
                     </div>
-                    <span class="text-2xl md:text-3xl font-bold text-gold-400">5,000+</span>
+                    <span class="text-lg md:text-3xl font-bold text-gold-400">5,000+</span>
                 </div>
                 <!-- Instagram -->
                 <div class="flex flex-col items-center">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
-                        <svg class="w-8 h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
+                    <div class="w-12 h-12 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-2 md:mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
+                        <svg class="w-5 h-5 md:w-8 md:h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
                         </svg>
                     </div>
-                    <span class="text-2xl md:text-3xl font-bold text-gold-400">3,200+</span>
+                    <span class="text-lg md:text-3xl font-bold text-gold-400">3,200+</span>
                 </div>
                 <!-- LinkedIn -->
                 <div class="flex flex-col items-center">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
-                        <svg class="w-8 h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
+                    <div class="w-12 h-12 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-2 md:mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
+                        <svg class="w-5 h-5 md:w-8 md:h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                         </svg>
                     </div>
-                    <span class="text-2xl md:text-3xl font-bold text-gold-400">2,300+</span>
+                    <span class="text-lg md:text-3xl font-bold text-gold-400">2,300+</span>
                 </div>
                 <!-- Twitter -->
                 <div class="flex flex-col items-center">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
-                        <svg class="w-8 h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
+                    <div class="w-12 h-12 md:w-20 md:h-20 rounded-xl border border-gold-700/30 bg-charcoal/50 flex items-center justify-center mb-2 md:mb-4 transition-all duration-300 hover:border-gold-500/50 hover:scale-105">
+                        <svg class="w-5 h-5 md:w-8 md:h-8 text-gold-400" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M23.953 4.57a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.06a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.936 4.936 0 0 0 4.604 3.417 9.867 9.867 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0 0 24 4.59z"/>
                         </svg>
                     </div>
-                    <span class="text-2xl md:text-3xl font-bold text-gold-400">1,200+</span>
+                    <span class="text-lg md:text-3xl font-bold text-gold-400">1,200+</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <div id="faq" class="py-16 md:py-24 px-6 relative z-10">
+    <div id="faq" class="py-12 md:py-24 px-4 md:px-6 relative z-10">
         <div class="max-w-4xl mx-auto">
             <!-- Title -->
-            <h2 class="font-header text-3xl md:text-5xl text-center mb-4 uppercase tracking-widest text-gold-300">
+            <h2 class="font-header text-2xl md:text-5xl text-center mb-3 md:mb-4 uppercase tracking-wide md:tracking-widest text-gold-300">
                 Frequently Asked Questions
             </h2>
             <p class="font-body text-center text-gray-400 text-sm md:text-base mb-12 max-w-2xl mx-auto italic">
@@ -2033,48 +2036,48 @@
     </script>
 
     <!-- Terms and Conditions Section -->
-    <div id="terms" class="py-16 md:py-24 px-6 relative z-10">
+    <div id="terms" class="py-12 md:py-24 px-4 md:px-6 relative z-10">
         <div class="max-w-6xl mx-auto">
             <!-- Title -->
-            <h2 class="font-header text-3xl md:text-5xl text-center mb-4 uppercase tracking-widest text-gold-300">
+            <h2 class="font-header text-2xl md:text-5xl text-center mb-3 md:mb-4 uppercase tracking-wide md:tracking-widest text-gold-300">
                 Terms and Conditions
             </h2>
-            <p class="font-body text-center text-gray-400 text-sm md:text-base mb-12 max-w-2xl mx-auto italic">
+            <p class="font-body text-center text-gray-400 text-xs md:text-base mb-8 md:mb-12 max-w-2xl mx-auto italic">
                 Please read these terms carefully before participating in Vishwapreneur'26
             </p>
 
             <!-- Content Grid -->
-            <div class="grid md:grid-cols-2 gap-6 font-body">
+            <div class="grid md:grid-cols-2 gap-4 md:gap-6 font-body">
                 <!-- Left Column -->
-                <div class="space-y-4">
+                <div class="space-y-3 md:space-y-4">
                     <!-- Age Limit -->
-                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
-                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Age Limit</h3>
-                        <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-gray-300">
+                    <div class="border border-gold-700/30 rounded-lg p-4 md:p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                        <h3 class="font-header text-gold-200 text-xs md:text-base tracking-wide mb-2 md:mb-3">Age Limit</h3>
+                        <ul class="list-disc list-inside space-y-1 md:space-y-2 text-xs md:text-base text-gray-300">
                             <li>Any person above the age of 13 is allowed to join us for Vishwapreneur'26</li>
                         </ul>
                     </div>
 
                     <!-- Privacy Policy -->
-                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
-                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Privacy Policy</h3>
-                        <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-gray-300">
+                    <div class="border border-gold-700/30 rounded-lg p-4 md:p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                        <h3 class="font-header text-gold-200 text-xs md:text-base tracking-wide mb-2 md:mb-3">Privacy Policy</h3>
+                        <ul class="list-disc list-inside space-y-1 md:space-y-2 text-xs md:text-base text-gray-300">
                             <li>By registering for Vishwapreneur'26, you consent to the collection and use of this information as set forth.</li>
                         </ul>
                     </div>
 
                     <!-- Advertisements & Promotions -->
-                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
-                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Advertisements & Promotions</h3>
-                        <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-gray-300">
+                    <div class="border border-gold-700/30 rounded-lg p-4 md:p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                        <h3 class="font-header text-gold-200 text-xs md:text-base tracking-wide mb-2 md:mb-3">Advertisements & Promotions</h3>
+                        <ul class="list-disc list-inside space-y-1 md:space-y-2 text-xs md:text-base text-gray-300">
                             <li>This website may contain links to third-party websites, products, or services, which may be posted by our affiliates, our partners, or our sponsor. Any kind of promotion regarding them is not allowed.</li>
                         </ul>
                     </div>
 
                     <!-- Ticket Booking Policy -->
-                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
-                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Ticket Booking Policy</h3>
-                        <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-gray-300">
+                    <div class="border border-gold-700/30 rounded-lg p-4 md:p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300">
+                        <h3 class="font-header text-gold-200 text-xs md:text-base tracking-wide mb-2 md:mb-3">Ticket Booking Policy</h3>
+                        <ul class="list-disc list-inside space-y-1 md:space-y-2 text-xs md:text-base text-gray-300">
                             <li>Once you book a seat for this event, it cannot be cancelled under any circumstances, and any request for fare refund will not be entertained.</li>
                         </ul>
                     </div>
@@ -2083,9 +2086,9 @@
                 <!-- Right Column -->
                 <div class="space-y-4">
                     <!-- Impermissible Actions -->
-                    <div class="border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 h-full">
-                        <h3 class="font-header text-gold-200 text-sm md:text-base tracking-wide mb-3">Following actions are impermissible</h3>
-                        <ul class="list-disc list-inside space-y-3 text-sm md:text-base text-gray-300">
+                    <div class="border border-gold-700/30 rounded-lg p-4 md:p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 h-full">
+                        <h3 class="font-header text-gold-200 text-xs md:text-base tracking-wide mb-2 md:mb-3">Following actions are impermissible</h3>
+                        <ul class="list-disc list-inside space-y-2 md:space-y-3 text-xs md:text-base text-gray-300">
                             <li>Use the information in any manner that could interfere with, disable, disrupt, overburden, or otherwise impair the Service</li>
                             <li>Use the website in any manner that we reasonably believe to be an abuse of or fraud on any payment system.</li>
                             <li>Access, search, or collect data about Vishwapreneur by any means (automated or otherwise) except as permitted in these Terms or in a separate agreement with EDC VIIT.</li>
@@ -2099,109 +2102,109 @@
     </div>
 
     <!-- Contact Us Section -->
-    <div id="contact" class="py-16 md:py-24 px-6 relative z-10">
+    <div id="contact" class="py-12 md:py-24 px-4 md:px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <!-- Title -->
-            <h2 class="font-header text-3xl md:text-5xl text-center mb-16 uppercase tracking-widest text-gold-300">
+            <h2 class="font-header text-2xl md:text-5xl text-center mb-8 md:mb-16 uppercase tracking-wide md:tracking-widest text-gold-300">
                 Contact Us
             </h2>
 
             <!-- Contact Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
                 <!-- Speaking Opportunities -->
-                <div class="relative border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
+                <div class="relative border border-gold-700/30 rounded-lg p-3 md:p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
                     <!-- Background Icon -->
-                    <div class="absolute right-2 bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <svg class="w-24 h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="absolute right-1 bottom-1 md:right-2 md:bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-12 h-12 md:w-24 md:h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/>
                         </svg>
                     </div>
                     <!-- Icon -->
-                    <div class="text-gold-500 mb-4">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="text-gold-500 mb-2 md:mb-4">
+                        <svg class="w-5 h-5 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/>
                         </svg>
                     </div>
-                    <h3 class="font-body text-white text-lg font-semibold mb-3">Speaking Opportunities</h3>
-                    <a href="mailto:curation.vishwapreneur25@gmail.com" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors mb-1">curation.vishwapreneur25@gmail.com</a>
-                    <a href="tel:+919561211033" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors">+91 9561211033</a>
+                    <h3 class="font-body text-white text-xs md:text-lg font-semibold mb-1 md:mb-3">Speaking</h3>
+                    <a href="mailto:curation.vishwapreneur25@gmail.com" class="block text-gray-400 text-[9px] md:text-sm hover:text-gold-400 transition-colors mb-1 truncate">curation.vishwapreneur25@gmail.com</a>
+                    <a href="tel:+919561211033" class="block text-gray-400 text-[10px] md:text-sm hover:text-gold-400 transition-colors">+91 9561211033</a>
                 </div>
 
                 <!-- Sponsorship Opportunities -->
-                <div class="relative border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
+                <div class="relative border border-gold-700/30 rounded-lg p-3 md:p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
                     <!-- Background Icon -->
-                    <div class="absolute right-2 bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <svg class="w-24 h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="absolute right-1 bottom-1 md:right-2 md:bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-12 h-12 md:w-24 md:h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M16.48 10.41c-.39.39-1.04.39-1.43 0l-4.47-4.46-7.05 7.04-.66-.63c-1.17-1.17-1.17-3.07 0-4.24l4.24-4.24c1.17-1.17 3.07-1.17 4.24 0L16.48 9c.39.39.39 1.02 0 1.41zm-1.41 1.41-4.47 4.47-7.05-7.05-.63.66c-1.17 1.17-1.17 3.07 0 4.24l4.24 4.24c1.17 1.17 3.07 1.17 4.24 0l5.12-5.12c.39-.39.39-1.02 0-1.41-.39-.39-1.04-.39-1.45-.03z"/>
                         </svg>
                     </div>
                     <!-- Icon -->
-                    <div class="text-gold-500 mb-4">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="text-gold-500 mb-2 md:mb-4">
+                        <svg class="w-5 h-5 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M16.48 10.41c-.39.39-1.04.39-1.43 0l-4.47-4.46-7.05 7.04-.66-.63c-1.17-1.17-1.17-3.07 0-4.24l4.24-4.24c1.17-1.17 3.07-1.17 4.24 0L16.48 9c.39.39.39 1.02 0 1.41zm-1.41 1.41-4.47 4.47-7.05-7.05-.63.66c-1.17 1.17-1.17 3.07 0 4.24l4.24 4.24c1.17 1.17 3.07 1.17 4.24 0l5.12-5.12c.39-.39.39-1.02 0-1.41-.39-.39-1.04-.39-1.45-.03z"/>
                         </svg>
                     </div>
-                    <h3 class="font-body text-white text-lg font-semibold mb-3">Sponsorship Opportunities</h3>
-                    <a href="mailto:edcflm.sponsorship@gmail.com" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors mb-1">edcflm.sponsorship@gmail.com</a>
-                    <a href="tel:+919970007004" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors">+91 9970007004</a>
+                    <h3 class="font-body text-white text-xs md:text-lg font-semibold mb-1 md:mb-3">Sponsorship</h3>
+                    <a href="mailto:edcflm.sponsorship@gmail.com" class="block text-gray-400 text-[9px] md:text-sm hover:text-gold-400 transition-colors mb-1 truncate">edcflm.sponsorship@gmail.com</a>
+                    <a href="tel:+919970007004" class="block text-gray-400 text-[10px] md:text-sm hover:text-gold-400 transition-colors">+91 9970007004</a>
                 </div>
 
                 <!-- Collaboration Opportunities -->
-                <div class="relative border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
+                <div class="relative border border-gold-700/30 rounded-lg p-3 md:p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
                     <!-- Background Icon -->
-                    <div class="absolute right-2 bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <svg class="w-24 h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="absolute right-1 bottom-1 md:right-2 md:bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-12 h-12 md:w-24 md:h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
                         </svg>
                     </div>
                     <!-- Icon -->
-                    <div class="text-gold-500 mb-4">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="text-gold-500 mb-2 md:mb-4">
+                        <svg class="w-5 h-5 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
                         </svg>
                     </div>
-                    <h3 class="font-body text-white text-lg font-semibold mb-3">Collaboration Opportunities</h3>
-                    <a href="mailto:pr.vishwapreneur25@gmail.com" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors mb-1">pr.vishwapreneur25@gmail.com</a>
-                    <a href="tel:+918010165540" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors">+91 8010165540</a>
+                    <h3 class="font-body text-white text-xs md:text-lg font-semibold mb-1 md:mb-3">Collaboration</h3>
+                    <a href="mailto:pr.vishwapreneur25@gmail.com" class="block text-gray-400 text-[9px] md:text-sm hover:text-gold-400 transition-colors mb-1 truncate">pr.vishwapreneur25@gmail.com</a>
+                    <a href="tel:+918010165540" class="block text-gray-400 text-[10px] md:text-sm hover:text-gold-400 transition-colors">+91 8010165540</a>
                 </div>
 
                 <!-- Queries -->
-                <div class="relative border border-gold-700/30 rounded-lg p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
+                <div class="relative border border-gold-700/30 rounded-lg p-3 md:p-6 bg-charcoal/50 backdrop-blur-sm hover:border-gold-500/50 transition-all duration-300 overflow-hidden group">
                     <!-- Background Icon -->
-                    <div class="absolute right-2 bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <svg class="w-24 h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="absolute right-1 bottom-1 md:right-2 md:bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-12 h-12 md:w-24 md:h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
                     </div>
                     <!-- Icon -->
-                    <div class="text-gold-500 mb-4">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="text-gold-500 mb-2 md:mb-4">
+                        <svg class="w-5 h-5 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
                     </div>
-                    <h3 class="font-body text-white text-lg font-semibold mb-3">Queries</h3>
-                    <a href="mailto:contact@vishwapreneur.in" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors mb-1">contact@vishwapreneur.in</a>
-                    <a href="tel:+917499404987" class="block text-gray-400 text-sm hover:text-gold-400 transition-colors">+91 7499404987</a>
+                    <h3 class="font-body text-white text-xs md:text-lg font-semibold mb-1 md:mb-3">Queries</h3>
+                    <a href="mailto:contact@vishwapreneur.in" class="block text-gray-400 text-[9px] md:text-sm hover:text-gold-400 transition-colors mb-1 truncate">contact@vishwapreneur.in</a>
+                    <a href="tel:+917499404987" class="block text-gray-400 text-[10px] md:text-sm hover:text-gold-400 transition-colors">+91 7499404987</a>
                 </div>
             </div>
         </div>
     </div>
     </section>
 
-    <footer class="bg-black py-12 border-t border-gold-900 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center gap-3 mb-6 md:mb-0">
-                <i data-lucide="sparkles" class="text-gold-700 w-5 h-5"></i>
+    <footer class="bg-black py-8 md:py-12 border-t border-gold-900 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-0">
+                <i data-lucide="sparkles" class="text-gold-700 w-4 h-4 md:w-5 md:h-5"></i>
                 <!-- UPDATED FOOTER LOGO -->
-                <span class="font-header text-lg text-gold-700 uppercase">EDC-VIT</span>
+                <span class="font-header text-sm md:text-lg text-gold-700 uppercase">EDC-VIT</span>
             </div>
-            <div class="text-gray-600 text-sm font-body italic">
+            <div class="text-gray-600 text-xs md:text-sm font-body italic text-center px-4">
                 "The wind carries it in its belly, the nurse thereof is the earth."
             </div>
-            <div class="flex gap-4 mt-6 md:mt-0">
-                <a href="#" class="text-gray-600 hover:text-gold-500 transition-colors"><i data-lucide="circle" class="w-5 h-5"></i></a>
-                <a href="#" class="text-gray-600 hover:text-gold-500 transition-colors"><i data-lucide="triangle" class="w-5 h-5"></i></a>
-                <a href="#" class="text-gray-600 hover:text-gold-500 transition-colors"><i data-lucide="square" class="w-5 h-5"></i></a>
+            <div class="flex gap-3 md:gap-4 mt-4 md:mt-0">
+                <a href="#" class="text-gray-600 hover:text-gold-500 transition-colors"><i data-lucide="circle" class="w-4 h-4 md:w-5 md:h-5"></i></a>
+                <a href="#" class="text-gray-600 hover:text-gold-500 transition-colors"><i data-lucide="triangle" class="w-4 h-4 md:w-5 md:h-5"></i></a>
+                <a href="#" class="text-gray-600 hover:text-gold-500 transition-colors"><i data-lucide="square" class="w-4 h-4 md:w-5 md:h-5"></i></a>
             </div>
         </div>
     </footer>
