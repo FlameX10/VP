@@ -1500,7 +1500,7 @@
 
             <!-- View All Sponsors Button -->
             <div class="text-center mt-4 md:mt-8">
-                <a href="sponsors.html" class="group relative inline-flex items-center gap-2 md:gap-3 px-5 md:px-8 py-2 md:py-3 overflow-hidden rounded-sm bg-void border border-gold-500/50 transition-all duration-300 hover:border-gold-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                <a id="view-all-sponsors-link" href="sponsors.html" class="group relative inline-flex items-center gap-2 md:gap-3 px-5 md:px-8 py-2 md:py-3 overflow-hidden rounded-sm bg-void border border-gold-500/50 transition-all duration-300 hover:border-gold-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
                     <!-- Hover Fill -->
                     <div class="absolute inset-0 w-0 bg-gold-500/10 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
                     
@@ -1553,6 +1553,7 @@
     <script>
         (function() {
             const stack = document.getElementById("sponsor-stack");
+            const viewAllSponsorsLink = document.getElementById("view-all-sponsors-link");
             const cardTemplates = [
                 { img: "Logos/1. TGH Logo White.png", alt: "The Global Hues" },
                 { img: "Logos/abp majha.webp", alt: "ABP Majha" },
@@ -1584,6 +1585,59 @@
             
             let cards = [];
             let positions = [];
+
+            function createCandidatePaths(path) {
+                return [
+                    path,
+                    "./" + path,
+                    "/" + path,
+                    "/VP/" + path
+                ].map((p) => encodeURI(p));
+            }
+
+            function createSponsorImg(template) {
+                const img = document.createElement("img");
+                const candidates = createCandidatePaths(template.img);
+                let candidateIndex = 0;
+
+                img.alt = template.alt;
+                img.src = candidates[candidateIndex];
+
+                img.onerror = function onError() {
+                    candidateIndex += 1;
+                    if (candidateIndex < candidates.length) {
+                        img.src = candidates[candidateIndex];
+                    }
+                };
+
+                return img;
+            }
+
+            if (viewAllSponsorsLink) {
+                viewAllSponsorsLink.addEventListener("click", async (event) => {
+                    event.preventDefault();
+                    const candidates = [
+                        "sponsors.html",
+                        "./sponsors.html",
+                        "/sponsors.html",
+                        "/VP/sponsors.html"
+                    ];
+
+                    for (const candidate of candidates) {
+                        try {
+                            const response = await fetch(candidate, { method: "HEAD", cache: "no-store" });
+                            if (response.ok) {
+                                window.location.href = candidate;
+                                return;
+                            }
+                        } catch (error) {
+                            // Try the next candidate URL.
+                        }
+                    }
+
+                    window.location.href = candidates[0];
+                });
+            }
             
             function init() {
                 stack.innerHTML = '';
@@ -1597,7 +1651,8 @@
                     card.className = 'card';
                     
                     if (template.img) {
-                        card.innerHTML = `<img src="${template.img}" alt="${template.alt}" />`;
+                        const img = createSponsorImg(template);
+                        card.appendChild(img);
                     } else if (template.text) {
                         card.innerHTML = `<div class="w-full h-full flex items-center justify-center">
                             <span class="text-gold-300 text-4xl font-bold font-header">${template.text}</span>

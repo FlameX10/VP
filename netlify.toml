@@ -1,10 +1,15 @@
+# This file is in the VP folder - the parent netlify.toml should be used instead
+# If deploying from this folder directly, use these settings:
+
 [build]
   publish = "."
-  command = "echo 'No build needed for static HTML'"
+  
+[[redirects]]
+  from = "/sponsors"
+  to = "/sponsors.html"
+  status = 200
 
-# Ensure proper MIME types for images
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
+[[redirects]]
+  from = "/gallery"
+  to = "/gallery.html"
+  status = 200
