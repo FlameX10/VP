@@ -1018,11 +1018,16 @@
                 <div class="corner-accent bl"></div>
                 <div class="corner-accent br"></div>
                 
-                <video id="main-video" autoplay loop muted playsinline crossorigin="anonymous">
+                <video id="main-video" loop muted playsinline crossorigin="anonymous">
                     <!-- Reliable abstract fluid video -->
                     <!-- UPDATED: Event/After Movie style video -->
                     <source src="src/assets/aftermovie/VPaftermovie24.mp4" type="video/mp4">
                 </video>
+                
+                <!-- Mute/Unmute Button -->
+                <button id="mute-unmute-btn" class="absolute bottom-4 right-4 z-[60] p-2 bg-black/50 rounded-full border border-gold-500/50 text-gold-300 hover:text-gold-100 hover:bg-black/80 transition-all backdrop-blur-sm shadow-[0_0_10px_rgba(0,0,0,0.5)]">
+                    <i data-lucide="volume-x" class="w-5 h-5 pointer-events-none" id="mute-icon"></i>
+                </button>
             </div>
             
             <!-- Sacred Text Container -->
@@ -2399,6 +2404,10 @@
         const cinematicContainer = document.getElementById('cinematic-container'); // The Video Frame
         const cinematicTitle = document.getElementById('cinematic-title-outside'); // The New Title
         const mainVideo = document.getElementById('main-video');
+        const muteUnmuteBtn = document.getElementById('mute-unmute-btn');
+        const muteIcon = document.getElementById('mute-icon');
+        let userHasInteractedWithMute = false;
+        let videoWasInView = false;
         
         const geoTitle = document.getElementById('geo-title');
         const svgContainer = document.getElementById('svg-container');
@@ -2858,14 +2867,64 @@
                        videoP = Math.max(0, Math.min(1, videoP));
                    }
                    cinematicContainer.style.opacity = videoP;
+                   cinematicContainer.style.pointerEvents = videoP > 0.5 ? 'auto' : 'none'; // Enables clicking the mute button when visible
                    if(cinematicTitle) cinematicTitle.style.opacity = videoP;
                    cinematicContainer.style.transform = `scale(${0.95 + (videoP * 0.05)})`;
                    
-                   if (videoP > 0.01 && mainVideo) {
+                   if (mainVideo) {
                        mainVideo.style.opacity = 1;
-                       if (mainVideo.paused) {
-                            mainVideo.play().catch(e => console.log("Auto-play prevented", e));
+
+                       const cineRect = cinematicContainer.getBoundingClientRect();
+                       const isOffScreen = cineRect.bottom <= 0 || cineRect.top >= viewHeight;
+                       const isCurrentlyInView = videoP > 0.01 && !isOffScreen;
+
+                       // Play/Pause and Reset logic based on view state
+                       if (isCurrentlyInView && !videoWasInView) {
+                           // Video just appeared on screen - restart it
+                           mainVideo.currentTime = 0;
+                           
+                           // Try to play with sound by default (if user hasn't toggled)
+                           if (!userHasInteractedWithMute) {
+                               mainVideo.muted = false;
+                               if(muteIcon) muteIcon.setAttribute('data-lucide', 'volume-2');
+                               lucide.createIcons();
+                           }
+                           
+                           const playPromise = mainVideo.play();
+                           if (playPromise !== undefined) {
+                               playPromise.catch(err => {
+                                   // Browser blocked unmuted autoplay. Fallback to muted.
+                                   mainVideo.muted = true;
+                                   if(muteIcon) muteIcon.setAttribute('data-lucide', 'volume-x');
+                                   lucide.createIcons();
+                                   mainVideo.play().catch(e => console.log("Completely blocked from playing", e));
+                               });
+                           }
+                       } else if (!isCurrentlyInView && videoWasInView) {
+                           // Video just left screen - pause it
+                           mainVideo.pause();
+                           mainVideo.muted = true;
+                           if(muteIcon) muteIcon.setAttribute('data-lucide', 'volume-x');
+                           lucide.createIcons();
+                           userHasInteractedWithMute = false; 
                        }
+                       
+                       // Safey check: Keep playing if browser paused it arbitrarily while in view
+                       if (isCurrentlyInView && mainVideo.paused) {
+                           const p = mainVideo.play();
+                           if (p !== undefined) {
+                               p.catch(() => {
+                                   if (!mainVideo.muted) {
+                                       mainVideo.muted = true;
+                                       if(muteIcon) muteIcon.setAttribute('data-lucide', 'volume-x');
+                                       lucide.createIcons();
+                                       mainVideo.play().catch(() => {});
+                                   }
+                               });
+                           }
+                       }
+
+                       videoWasInView = isCurrentlyInView;
                    }
                }
             }
@@ -3080,7 +3139,22 @@
             animateGuest();
         }
         initRandomGlows();
-        
+
+        // Mute/Unmute Logic
+        if (muteUnmuteBtn && mainVideo) {
+            muteUnmuteBtn.addEventListener('click', () => {
+                userHasInteractedWithMute = true;
+                if (mainVideo.muted) {
+                    mainVideo.muted = false;
+                    if(muteIcon) muteIcon.setAttribute('data-lucide', 'volume-2');
+                } else {
+                    mainVideo.muted = true;
+                    if(muteIcon) muteIcon.setAttribute('data-lucide', 'volume-x');
+                }
+                lucide.createIcons();
+            });
+        }
+
         // Reinitialize particles after DOM settles to ensure full coverage
         setTimeout(() => {
             onResize();
