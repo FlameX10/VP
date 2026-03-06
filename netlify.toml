@@ -1,0 +1,10 @@
+[build]
+  publish = "."
+  command = "echo 'No build needed for static HTML'"
+
+# Ensure proper MIME types for images
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
